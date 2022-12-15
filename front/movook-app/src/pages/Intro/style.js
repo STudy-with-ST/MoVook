@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const bounceIcon = keyframes`
+  0% {
+    transform: translateY(0);    
+  }
+  50% {
+      transform: translateY(-15px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+`;
 
 export const IntroContainer = styled.div`
   position: relative;
@@ -17,6 +29,7 @@ export const IntroMoVookImg = styled.img`
   top: 0px;
   right: 0px;
   width: 43%;
+  animation: ${bounceIcon} 2s ease infinite;
 `;
 
 export const TitleWrapper = styled.div`
