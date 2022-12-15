@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const BasicInput = ({ text, type, value, onChange, placeholder, readonly }) => {
+const BasicInput = ({
+  text,
+  type,
+  value,
+  onChange,
+  placeholder,
+  readonly,
+  autoCompleted = "off",
+}) => {
   return (
     <InputContainer>
       <InputLabel>{text}</InputLabel>
@@ -11,6 +19,7 @@ const BasicInput = ({ text, type, value, onChange, placeholder, readonly }) => {
         placeholder={placeholder}
         readOnly={readonly}
         onChange={onChange}
+        autoComplete={autoCompleted}
       />
     </InputContainer>
   );
