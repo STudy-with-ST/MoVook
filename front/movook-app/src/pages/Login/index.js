@@ -1,4 +1,5 @@
 import React from "react";
+import BasicButton from "../../components/common/BasicButton";
 import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
 const Login = () => {
@@ -11,8 +12,7 @@ const Login = () => {
       id: userId,
       password: userPw,
     };
-
-    console.log(user);
+    console.log("user: ", user);
   };
   return (
     <div>
@@ -32,7 +32,7 @@ const Login = () => {
           value={userPw}
           onChange={onChangeUserPw}
         />
-        <input type="submit" value="로그인" onClick={handleOnClick} />
+        <BasicButton text="로그인" onClick={handleOnClick} />
       </form>
     </div>
   );
