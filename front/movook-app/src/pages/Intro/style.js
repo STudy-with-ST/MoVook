@@ -13,6 +13,15 @@ const bounceIcon = keyframes`
 `;
 
 export const IntroContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow-y: scroll;
+`;
+
+export const IntroWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
