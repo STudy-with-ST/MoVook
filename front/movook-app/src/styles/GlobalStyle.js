@@ -17,12 +17,14 @@ const GlobalStyles = createGlobalStyle`
 }
 
   body {
+
   margin: 0;
   font-family: "S-CoreDream-3Light", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color : #333;
   } 
 
   a{
