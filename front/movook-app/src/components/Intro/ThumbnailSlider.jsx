@@ -2,14 +2,15 @@ import React from "react";
 import styled, { css, keyframes } from "styled-components";
 import Book1 from "../../assets/img/intro/img_intro_books1.png";
 import Book2 from "../../assets/img/intro/img_intro_books2.png";
+import Movie from "../../assets/img/intro/img_intro_movies1.png";
 const ThumbnailSlider = () => {
   return (
     <ThumbnailContainer>
       <Title>나만의 아카이브를 직접 만들어보세요!</Title>
       <ContentWrapper>
-        <Books type="book" />
-        <Books type="movie" />
-        <Books type="book" />
+        <Books type="book" contents={Book1} />
+        <Books type="movie" contents={Movie} />
+        <Books type="book" contents={Book2} />
       </ContentWrapper>
     </ThumbnailContainer>
   );
@@ -66,7 +67,8 @@ const Books = styled.div`
   height: 300px;
   margin-bottom: -100px;
   background-position: 0;
-  background: url(${Book1}) 0/3000px repeat-x;
+  background: url(${(props) => (props.contents ? props.contents : "")}) 0/3000px
+    repeat-x;
   background-size: 2800px;
   background-position: 0 0;
   animation: ${(props) =>
