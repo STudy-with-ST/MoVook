@@ -1,7 +1,7 @@
 import React from "react";
-
+import * as S from "./style.js";
 const Intro = () => {
-  return <div>Intro Page</div>;
+  return <S.IntroContainer>Intro Page</S.IntroContainer>;
 };
 
 export default Intro;
