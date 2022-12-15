@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 const bounceIcon = keyframes`
   0% {
@@ -60,4 +61,23 @@ export const IntroTitle = styled.h1`
     font-size: 2rem;
     line-height: 50px;
   }
+`;
+
+export const StartButton = styled(Link)`
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 450px;
+  min-height: 56px;
+  padding: 16px auto;
+  background-color: ${(props) =>
+    props.scrollPosition < 50 ? "#fff" : "#99c9a6"};
+  border-radius: 32px;
+  color: ${(props) => (props.scrollPosition < 50 ? "#99c9a6" : "#fff")};
+  text-align: center;
+  line-height: 56px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 16%), 4px 8px 28px rgb(0 0 0 / 8%);
 `;
