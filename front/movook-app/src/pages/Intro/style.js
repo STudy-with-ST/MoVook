@@ -38,7 +38,7 @@ export const IntroMoVookImg = styled.img`
   position: absolute;
   top: 0px;
   right: 0px;
-  width: 43%;
+  width: 36%;
   animation: ${bounceIcon} 2s ease infinite;
 `;
 

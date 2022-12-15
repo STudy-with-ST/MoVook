@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style.js";
-import MoVookImg from "../../assets/img/intro/img_intro.png";
+import MoVookImg from "../../assets/img/intro/img_intro_movook.png";
 
 import ThumbnailSlider from "../../components/Intro/ThumbnailSlider.jsx";
 const Intro = () => {
