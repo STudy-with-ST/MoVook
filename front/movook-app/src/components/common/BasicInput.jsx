@@ -27,7 +27,9 @@ const BasicInput = ({
 
 export default BasicInput;
 
-const InputContainer = styled.div``;
+const InputContainer = styled.div`
+  margin: 24px 0px;
+`;
 
 const InputLabel = styled.label`
   display: block;
