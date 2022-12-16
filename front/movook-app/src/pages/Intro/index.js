@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style.js";
-import MoVookImg from "../../assets/img/intro/img_intro_movook.png";
-import Logo from "../../assets/img/common/img_logo.png";
+import Logo from "../../assets/img/common/img_movook.png";
 import ThumbnailSlider from "../../components/Intro/ThumbnailSlider.jsx";
+import ReviewComponent from "../../components/Intro/ReviewComponent.jsx";
+import Title from "../../components/Intro/Title.jsx";
 const Intro = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const updateScrollPosition = () => {
@@ -16,23 +17,22 @@ const Intro = () => {
     <S.IntroContainer>
       <S.IntroWrapper>
         <S.LogoWrapper>
-          <S.Logo src={Logo} alt="logo" />
+          <S.Logo src={Logo} alt="logo"></S.Logo>
           <S.LogoText>MOVOOK</S.LogoText>
         </S.LogoWrapper>
-        <S.IntroMoVookImg src={MoVookImg} alt="movook" />
-        <S.TitleWrapper>
-          <S.IntroTitle>내가 본</S.IntroTitle>
-          <S.IntroTitle>책부터 영화까지</S.IntroTitle>
-          <S.IntroTitle>한번에 기록해보세요!</S.IntroTitle>
+        <S.ContentsWrapper>
+          <S.IntroMoVookImg src={Logo} alt="logo" />
+          <Title color="white" text="나만의 MOVOOK 만들기" />
           <S.IntroText>
-            간단한 검색만으로 빠르게 기록할 수 있는 MOVOOK!
+            내가 본 영화부터 책까지 한번에 기록해보세요!
           </S.IntroText>
-        </S.TitleWrapper>
-        <S.StartButton to="/login" scroll-position={scrollPosition}>
-          나만의 MOVOOK 만들기
+        </S.ContentsWrapper>
+        <S.StartButton scroll-position={scrollPosition}>
+          MOVOOK 시작하기
         </S.StartButton>
       </S.IntroWrapper>
       <ThumbnailSlider id="intro-thumbnail" />
+      <ReviewComponent />
     </S.IntroContainer>
   );
 };

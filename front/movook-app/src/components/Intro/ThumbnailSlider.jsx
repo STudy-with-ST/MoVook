@@ -3,11 +3,12 @@ import styled, { css, keyframes } from "styled-components";
 import Book1 from "../../assets/img/intro/img_intro_books1.png";
 import Book2 from "../../assets/img/intro/img_intro_books2.png";
 import Movie from "../../assets/img/intro/img_intro_movies1.png";
+import Title from "./Title";
 const ThumbnailSlider = () => {
   return (
     <ThumbnailContainer>
-      <Title>나만의 아카이브를 직접 만들어보세요!</Title>
       <ContentWrapper>
+        <Title text="책부터 영화까지 한번에 기록해보세요!" />
         <Books type="book" contents={Book1} />
         <Books type="movie" contents={Movie} />
         <Books type="book" contents={Book2} />
@@ -26,22 +27,6 @@ const ThumbnailContainer = styled.div`
 
 const ContentWrapper = styled.div`
   background-color: transparent;
-`;
-
-const Title = styled.h1`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 3rem;
-  line-height: 80px;
-  letter-spacing: 0.1em;
-  color: #333;
-  background-color: transparent;
-  text-align: center;
-  margin: 36px 0px;
-  @media screen and (max-width: 640px) {
-    font-size: 2rem;
-    line-height: 50px;
-  }
 `;
 
 const rotateBooks = keyframes`
