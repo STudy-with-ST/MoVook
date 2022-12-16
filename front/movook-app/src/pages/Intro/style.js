@@ -34,6 +34,24 @@ export const IntroWrapper = styled.div`
   border-bottom-left-radius: 500px;
 `;
 
+export const LogoWrapper = styled.div`
+  position: absolute;
+  top: 36px;
+  left: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Logo = styled.img`
+  width: 54px;
+`;
+
+export const LogoText = styled(Link)`
+  font-size: 1.6rem;
+  margin-left: 8px;
+`;
+
 export const IntroMoVookImg = styled.img`
   position: absolute;
   top: 0px;
@@ -51,15 +69,16 @@ export const TitleWrapper = styled.div`
 `;
 
 export const IntroTitle = styled.h1`
+  font-family: "S-CoreDream-6Bold";
   font-style: normal;
   font-weight: 700;
-  font-size: 3.25rem;
+  font-size: 5rem;
   line-height: 80px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: #fff;
   @media screen and (max-width: 640px) {
-    font-size: 2rem;
-    line-height: 50px;
+    font-size: 3rem;
+    line-height: 40px;
   }
 `;
 
@@ -73,11 +92,19 @@ export const StartButton = styled(Link)`
   min-height: 56px;
   padding: 16px auto;
   background-color: ${(props) =>
-    props.scrollPosition < 50 ? "#fff" : "#99c9a6"};
+    props["scroll-position"] < 50 ? "white" : "var(--color-primary)"};
   border-radius: 32px;
-  color: ${(props) => (props.scrollPosition < 50 ? "#99c9a6" : "#fff")};
+  color: ${(props) =>
+    props["scroll-position"] < 50 ? "var(--color-primary)" : "white"};
+  font-family: "S-CoreDream-6Bold";
   text-align: center;
+  font-size: 1.8rem;
   line-height: 56px;
-  font-weight: bold;
   box-shadow: 0 4px 12px rgb(0 0 0 / 16%), 4px 8px 28px rgb(0 0 0 / 8%);
+`;
+
+export const IntroText = styled.label`
+  color: white;
+  font-size: 1.8rem;
+  padding-top: 16px;
 `;
