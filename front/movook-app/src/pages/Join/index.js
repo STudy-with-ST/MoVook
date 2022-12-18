@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BasicButton from "../../components/common/BasicButton";
 import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
@@ -9,16 +9,35 @@ const Join = () => {
   const [userPw, onChangeUserPw] = useInput("");
   const [userName, onChangeUserName] = useInput("");
   const [userConfirmPw, onChangeUserConfirmPw] = useInput("");
+  const [isValidate, setValidate] = useState(false);
+
+  useEffect(() => {
+    if (isValidate) {
+      setValidate(false);
+    }
+  }, [isValidate, onChangeUserConfirmPw, onChangeUserPw]);
+
+  const validatePassword = () => {
+    if (userConfirmPw === userPw) {
+      console.log("일치");
+      setValidate(true);
+    } else {
+      console.log("불일치");
+      setValidate(false);
+    }
+  };
 
   const handleOnClick = (e) => {
     e.preventDefault();
-
-    const createdUser = {
-      id: userId,
-      name: userName,
-      password: userPw,
-    };
-    console.log("createdUser: ", createdUser);
+    validatePassword();
+    if (isValidate) {
+      const createdUser = {
+        id: userId,
+        name: userName,
+        password: userPw,
+      };
+      console.log("createdUser: ", createdUser);
+    }
   };
   return (
     <S.LoginContainer>
@@ -50,9 +69,9 @@ const Join = () => {
               onChange={onChangeUserPw}
             />
             <BasicInput
-              text="Password"
+              text="Confirm Password"
               placeholder="Enter Your Confirm Password"
-              type="Confirm password"
+              type="password"
               value={userConfirmPw}
               onChange={onChangeUserConfirmPw}
             />
