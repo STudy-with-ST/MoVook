@@ -1,7 +1,12 @@
 import React from "react";
+import Card from "../../components/Review/Card";
 
 const Review = () => {
-  return <div>Review Page</div>;
+  return (
+    <div>
+      <Card />
+    </div>
+  );
 };
 
 export default Review;
