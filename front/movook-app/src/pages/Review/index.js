@@ -1,11 +1,20 @@
 import React from "react";
 import Card from "../../components/Review/Card";
-
+import * as S from "./style";
 const Review = () => {
   return (
-    <div>
-      <Card />
-    </div>
+    <S.Container>
+      <S.CardWrapper>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </S.CardWrapper>
+    </S.Container>
   );
 };
 
