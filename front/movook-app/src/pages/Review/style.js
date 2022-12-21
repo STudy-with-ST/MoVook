@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0px 96px;
 `;
 
 export const CardWrapper = styled.div`
