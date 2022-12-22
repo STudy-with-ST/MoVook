@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import ReviewItem from "./ReviewItem";
+import Card from "../Review/Card.jsx";
 import Title from "./Title";
 const ReviewComponent = () => {
   return (
     <ReviewContainer>
       <Title text="후기를 여러 사람들과 공유해보세요" />
       <ReviewWrapper>
-        <ReviewItem />
-        <ReviewItem />
-        <ReviewItem />
+        <Card />
+        <Card />
+        <Card />
       </ReviewWrapper>
     </ReviewContainer>
   );
@@ -18,7 +18,7 @@ const ReviewComponent = () => {
 export default ReviewComponent;
 
 const ReviewContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -28,12 +28,14 @@ const ReviewContainer = styled.div`
 `;
 
 const ReviewWrapper = styled.div`
+  max-width: 860px;
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   @media screen and (max-width: 640px) {
-    flex-direction: column;
+    min-width: 860px;
+    overflow-x: scroll;
   }
 `;
