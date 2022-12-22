@@ -15,6 +15,7 @@ import com.movook.service.UserService;
 
 import io.swagger.annotations.Api;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,14 +64,14 @@ public class UserRestController {
             if (nUser != null) {
 
                 // token 생성
-                String accessToken = jwtService.createAccessToken("id", nUser.getUser_id());
-                String refreshToken = jwtService.createRefreshToken("id", nUser.getUser_id());
+                String accessToken = jwtService.createAccessToken("user_id", nUser.getUser_id());
+                String refreshToken = jwtService.createRefreshToken("user_id", nUser.getUser_id());
 
 
                 // refresh token을 데이터베이스에 저장
                 Map<String, String> map = new HashMap<>();
-                map.put("id", nUser.getUser_id());
-                map.put("token", refreshToken);
+                map.put("user_id", nUser.getUser_id());
+                map.put("refresh_token", refreshToken);
                 userService.saveRefreshToken(map);
 
                 // 로그 출력
@@ -78,8 +79,8 @@ public class UserRestController {
                 logger.debug("로그인 refreshToken 정보 : {}", refreshToken);
 
                 // response map
-                resultMap.put("access-token", accessToken);
-                resultMap.put("refresh-token", refreshToken);
+                resultMap.put("access_token", accessToken);
+                resultMap.put("refresh_token", refreshToken);
                 resultMap.put("message", OK);
 
                 status = HttpStatus.ACCEPTED;
@@ -123,7 +124,7 @@ public class UserRestController {
         }
     }
 
-    @ApiOperation(value = "", notes = "user_id와 email을 입력받아 비밀번호를 찾는다.")
+    @ApiOperation(value = "비밀번호 변경", notes = "user_id와 email을 입력받아 비밀번호를 찾는다.")
     @PostMapping("/pw/change")
     public ResponseEntity<?> changePw(@RequestBody User user){
         try {
@@ -132,6 +133,53 @@ public class UserRestController {
             logger.error("아이디가 존재하지 않습니다. : {}", e);
             return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
         }
+    }
+
+    @ApiOperation(value = "유효 토큰 여부 확인", notes = "Access token의 유효성을 검증해 유효하면 'success' 유효하지 않다면 'fail' ", response = Map.class)
+    @GetMapping("/auth")
+    public ResponseEntity<?> checkAuth(HttpServletRequest request) {
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        String msg = OK;
+        if (jwtService.checkToken(request.getHeader("access_token"))) {
+            try {
+                status = HttpStatus.ACCEPTED;
+            } catch (Exception e) {
+                logger.error("정보조회 실패 : {}", e);
+                status = HttpStatus.INTERNAL_SERVER_ERROR;
+            }
+        } else {
+            logger.error("사용 불가능 토큰!!!");
+            msg = NO;
+            status = HttpStatus.UNAUTHORIZED;
+        }
+        return new ResponseEntity<String>(msg, status);
+    }
+
+    @ApiOperation(value = "Access Token 재발급", notes = "만료된 access token을 재발급받는다.", response = Map.class)
+    @GetMapping("/auth/refresh")
+    public ResponseEntity<?> checkRefresh(@RequestBody User user, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = HttpStatus.ACCEPTED;
+        String token = request.getHeader("refresh_token");
+        logger.debug("token : {}, memberDto : {}", token, user);
+        if (jwtService.checkToken(token)) {
+            try {
+                if (token.equals(userService.getRefreshToken(user.getUser_id()))) {
+                    String accessToken = jwtService.createAccessToken("user_id", user.getUser_id());
+                    logger.debug("token : {}", accessToken);
+                    logger.debug("정상적으로 액세스토큰 재발급!!!");
+                    resultMap.put("access_token", accessToken);
+                    resultMap.put("message", OK);
+                    status = HttpStatus.ACCEPTED;
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            logger.debug("리프레쉬토큰도 사용불!!!!!!!");
+            status = HttpStatus.UNAUTHORIZED;
+        }
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
 }
