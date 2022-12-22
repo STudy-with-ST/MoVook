@@ -8,7 +8,7 @@ html {
   --color-text: #333333;
   --color-text-secondary: #999999;
   --color-primary: #99C9A6;
-  --color-background: #F8FAFB;
+  --color-background: #ECECEC;
   font-size: 62.5%; 
 }
 
