@@ -80,3 +80,23 @@ export const ImgContainer = styled.div`
     width: 72%;
   }
 `;
+
+export const CheckBox = styled.input`
+  appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+  &:checked {
+    background-color: var(--color-primary);
+  }
+`;
+
+export const Text = styled.label`
+  font-size: 1.26rem;
+  margin-left: 8px;
+`;
+export const RememberUserWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;

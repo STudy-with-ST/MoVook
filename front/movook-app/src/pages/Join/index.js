@@ -7,7 +7,7 @@ import * as S from "./style.js";
 const Join = () => {
   const [userId, onChangeUserId] = useInput("");
   const [userPw, onChangeUserPw] = useInput("");
-  const [userName, onChangeUserName] = useInput("");
+  const [userBirth, onChangeUserBirth] = useInput("");
   const [userConfirmPw, onChangeUserConfirmPw] = useInput("");
   const [isValidate, setValidate] = useState(false);
 
@@ -33,7 +33,7 @@ const Join = () => {
     if (isValidate) {
       const createdUser = {
         id: userId,
-        name: userName,
+        name: userBirth,
         password: userPw,
       };
       console.log("createdUser: ", createdUser);
@@ -42,17 +42,9 @@ const Join = () => {
   return (
     <S.LoginContainer>
       <S.LoginFormContainer>
-        <S.PageTitle>Sign Up</S.PageTitle>
+        <S.PageTitle>회원가입</S.PageTitle>
         <S.FormWrapper>
           <form method="POST">
-            <BasicInput
-              id="input-name"
-              text="Name"
-              placeholder="Enter Your Name"
-              type="text"
-              value={userName}
-              onChange={onChangeUserName}
-            />
             <BasicInput
               id="input-id"
               text="ID"
@@ -60,6 +52,13 @@ const Join = () => {
               type="text"
               value={userId}
               onChange={onChangeUserId}
+            />
+            <BasicInput
+              id="input-birth"
+              text="Birth"
+              type="date"
+              value={userBirth}
+              onChange={onChangeUserBirth}
             />
             <BasicInput
               text="Password"

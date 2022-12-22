@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BasicButton from "../../components/common/BasicButton";
 import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
@@ -7,6 +7,7 @@ import * as S from "./style.js";
 const Login = () => {
   const [userId, onChangeUserId] = useInput("");
   const [userPw, onChangeUserPw] = useInput("");
+  const [isRememberUser, setRememberUser] = useState(false);
   const handleOnClick = (e) => {
     e.preventDefault();
 
@@ -16,12 +17,14 @@ const Login = () => {
     };
     console.log("user: ", user);
   };
+
   return (
     <S.LoginContainer>
       <S.LoginFormContainer>
-        <S.PageTitle>Sign In</S.PageTitle>
+        <S.PageTitle>로그인</S.PageTitle>
         <S.Description>
-          Don’t have a account, <S.PageLink to="/join">Sign Up</S.PageLink>
+          아직 회원이 아니신가요?{" "}
+          <S.PageLink to="/join">회원가입 하기</S.PageLink>
         </S.Description>
         <S.FormWrapper>
           <form method="POST">
@@ -40,6 +43,17 @@ const Login = () => {
               value={userPw}
               onChange={onChangeUserPw}
             />
+
+            <S.RememberUserWrapper>
+              <S.CheckBox
+                type="checkbox"
+                name="auto-login"
+                id="auto-login"
+                defaultChecked={isRememberUser}
+                onChange={() => setRememberUser((prev) => !prev)}
+              />
+              <S.Text htmlFor="auto-login">아이디 기억하기</S.Text>
+            </S.RememberUserWrapper>
             <BasicButton text="로그인" onClick={handleOnClick} />
           </form>
         </S.FormWrapper>
