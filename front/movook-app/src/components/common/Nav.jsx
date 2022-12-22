@@ -5,13 +5,13 @@ import { FiGrid, FiCalendar, FiGlobe } from "react-icons/fi";
 const Nav = () => {
   return (
     <Container>
-      <Circle>
-        <FiGrid size="25" color="black" />
+      <Circle isClicked={true}>
+        <FiGrid size="25" color="white" />
       </Circle>
-      <Circle>
+      <Circle isClicked={false}>
         <FiCalendar size="25" color="black" />
       </Circle>
-      <Circle>
+      <Circle isClicked={false}>
         <FiGlobe size="25" color="black" />
       </Circle>
     </Container>
@@ -38,6 +38,7 @@ const Circle = styled.div`
   border-radius: 50%;
 
   background-color: var(--color-primary);
+  background-color: ${(props) => (props.isClicked ? `var(--color-primary)` : `transparent`)};
 
   margin: 10px;
   align-items: center;
