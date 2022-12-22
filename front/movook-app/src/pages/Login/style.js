@@ -91,3 +91,12 @@ export const CheckBox = styled.input`
     background-color: var(--color-primary);
   }
 `;
+
+export const Text = styled.label`
+  font-size: 1.26rem;
+  margin-left: 8px;
+`;
+export const RememberUserWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;

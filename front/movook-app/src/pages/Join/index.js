@@ -42,7 +42,7 @@ const Join = () => {
   return (
     <S.LoginContainer>
       <S.LoginFormContainer>
-        <S.PageTitle>Sign Up</S.PageTitle>
+        <S.PageTitle>회원가입</S.PageTitle>
         <S.FormWrapper>
           <form method="POST">
             <BasicInput
