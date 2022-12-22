@@ -12,7 +12,7 @@ export const CardWrapper = styled.div`
   display: grid;
   width: 100%;
   place-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   grid-gap: 12px;
   background-color: transparent;
 `;

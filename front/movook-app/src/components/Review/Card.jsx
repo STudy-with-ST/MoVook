@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = () => {
+  const urls = [
+    "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
+    "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
+  ];
   return (
     <Flip>
       <Container>
         <CardFront>
-          <CardImg
-            src="https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg"
-            alt="img"
-          />
+          <CardImg src={urls[0]} alt="img" />
         </CardFront>
         <CardBack>
           <Title>소장하고 싶은 책표지 디자인</Title>
@@ -114,7 +115,7 @@ const Text = styled.label`
   margin-right: ${(props) => (props.type === "bold" ? "8px" : "0px")};
 `;
 const Review = styled.div`
-  color: var(color-text-secondary);
+  color: var(--color-text-secondary);
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
