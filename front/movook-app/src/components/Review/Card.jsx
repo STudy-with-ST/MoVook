@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import TestUser from "../../assets/img/common/img_user.png";
 const Card = () => {
   const urls = [
     "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
@@ -31,7 +31,11 @@ const Card = () => {
             언덕 소녀들의 봅니다. 파란 어머니, 오면 멀리 걱정도 아직 별이
             어머님, 같이 까닭입니다.
           </Review>
-          <UserWrapper />
+          <UserWrapper>
+            <UserImg src={TestUser} alt="user" />
+            <UserId> 안태봉 </UserId>
+            <RegDate>2022.12.24</RegDate>
+          </UserWrapper>
         </CardBack>
       </Container>
     </Flip>
@@ -123,11 +127,41 @@ const Review = styled.div`
   margin-top: 16px;
 `;
 
-export const UserWrapper = styled.div`
+const UserWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 16px 16px 0px 16px;
+  border-top: 1px solid #f4f4f4;
   width: 100%;
   min-height: 4.25rem;
-  background-color: red;
+  background-color: transparent;
   position: absolute;
   bottom: 16px;
   left: 0px;
+`;
+
+const UserImg = styled.img`
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+`;
+
+const UserId = styled.label`
+  font-size: 1.125rem;
+  font-family: "S-CoreDream-6Bold";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.375rem;
+`;
+
+const RegDate = styled.p`
+  position: absolute;
+  right: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.188rem;
+  color: var(--color-text-secondary);
+  text-align: end;
 `;
