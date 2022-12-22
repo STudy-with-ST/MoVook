@@ -80,3 +80,14 @@ export const ImgContainer = styled.div`
     width: 72%;
   }
 `;
+
+export const CheckBox = styled.input`
+  appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+  &:checked {
+    background-color: var(--color-primary);
+  }
+`;

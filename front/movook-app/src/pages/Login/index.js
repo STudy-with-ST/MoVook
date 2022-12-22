@@ -40,6 +40,11 @@ const Login = () => {
               value={userPw}
               onChange={onChangeUserPw}
             />
+
+            <div>
+              <S.CheckBox type="checkbox" name="auto-login" id="auto-login" />
+              <label htmlFor="auto-login">아이디 기억하기</label>
+            </div>
             <BasicButton text="로그인" onClick={handleOnClick} />
           </form>
         </S.FormWrapper>
