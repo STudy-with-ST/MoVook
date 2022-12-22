@@ -1,6 +1,6 @@
 package com.movook.service;
 
-import com.mvc.exception.UnAuthorizedException;
+import com.movook.exception.UnAuthorizedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
