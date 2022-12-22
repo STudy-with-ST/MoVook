@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../../components/common/Header";
 import Nav from "../../components/common/Nav";
+import SelectGroup from "../../components/Main/SelectGroup";
 import Cover from "../../components/Main/Cover";
 
 const Main = () => {
@@ -45,7 +46,10 @@ const Main = () => {
         <Body>
           <Nav />
           <Left>
-            <Selects></Selects>
+            <Title>
+              <Text>나의 MOVOOK</Text>
+              <SelectGroup />
+            </Title>
             <Covers></Covers>
           </Left>
           <Right></Right>
@@ -65,20 +69,17 @@ const Main = () => {
 export default Main;
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #99c9a6;
-  height: 5px;
+  padding 0px 96px;
 `;
-
-//heigth를 5px 로 줬는데 자식요소 height 퍼센트가 먹는거지
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: Column;
-  height: 90%;
+  height: 90vh;
   background-color: white;
 `;
 
@@ -92,12 +93,20 @@ const Body = styled.div`
 const Left = styled.div`
   height: 100%;
   width: 60%;
+  background-color: var(--color-background);
+  border-radius: 32px;
+  margin: 0px 15px 0px 0px;
+  padding: 20px 10px;
+
   border: 1px solid red;
 `;
 
 const Right = styled.div`
   height: 100%;
   width: 40%;
+  margin: 0px 0px 0px 15px;
+  padding: 20px 10px;
+
   border: 1px solid green;
 `;
 const Covers = styled.div`
@@ -105,9 +114,18 @@ const Covers = styled.div`
   width: 60%;
 `;
 
-const Selects = styled.div`
-  height: 100px;
-  width: 60%;
+const Title = styled.div`
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid purple;
 `;
 
-// 배경색을 저렇게 하는게 맞낭
+const Text = styled.h2`
+  font-family: "S-CoreDream-6Bold";
+  font-size: 2.5rem;
+  margin: 0px 20px;
+`;
