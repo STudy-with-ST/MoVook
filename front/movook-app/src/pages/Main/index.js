@@ -79,8 +79,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: Column;
   height: 90%;
-  width: 1618px;
-  border-radius: 32px;
   background-color: white;
 `;
 
