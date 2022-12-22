@@ -50,7 +50,11 @@ const Main = () => {
               <Text>나의 MOVOOK</Text>
               <SelectGroup />
             </Title>
-            <Covers></Covers>
+            <CoverWrapper>
+              {workData.map((work) => (
+                <Cover work={work} key={work.id} />
+              ))}
+            </CoverWrapper>
           </Left>
           <Right></Right>
         </Body>
@@ -87,7 +91,8 @@ const Body = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  border: 1px solid blue;
+
+  // border: 1px solid blue;
 `;
 
 const Left = styled.div`
@@ -98,7 +103,7 @@ const Left = styled.div`
   margin: 0px 15px 0px 0px;
   padding: 20px 10px;
 
-  border: 1px solid red;
+  // border: 1px solid red;
 `;
 
 const Right = styled.div`
@@ -107,11 +112,26 @@ const Right = styled.div`
   margin: 0px 0px 0px 15px;
   padding: 20px 10px;
 
-  border: 1px solid green;
+  // border: 1px solid green;
 `;
-const Covers = styled.div`
-  height: 100%;
-  width: 60%;
+
+const CoverWrapper = styled.div`
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  height: 95%;
+  width: 100%;
+
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-rows: 0fr 0fr 0fr;
+  // grid-gap: 10px;
+  background-color: transparent;
+
+  border: 1px solid green;
 `;
 
 const Title = styled.div`
@@ -121,7 +141,7 @@ const Title = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  border: 1px solid purple;
+  // border: 1px solid purple;
 `;
 
 const Text = styled.h2`
