@@ -50,8 +50,7 @@ const LogoTitle = styled.h2`
 `;
 
 const Text = styled.label`
-  font-family: ${(props) =>
-    props.size === "lg" ? "S-CoreDream-6Bold" : "S-CoreDream-4Regular"};
+  font-family: ${(props) => (props.size === "lg" ? "S-CoreDream-6Bold" : "S-CoreDream-4Regular")};
   font-size: ${(props) => (props.size === "lg" ? "1.6rem" : "1.4rem")};
   margin-right: 4px;
 `;
