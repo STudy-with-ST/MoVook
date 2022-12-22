@@ -17,4 +17,5 @@ const Button = styled.button`
   font-weight: 700;
   font-family: "S-CoreDream-6Bold";
   letter-spacing: 0.1em;
+  margin: 24px 0px;
 `;
