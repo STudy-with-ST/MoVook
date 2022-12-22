@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class Book {
 	private int seq_num;
-	private int isbn_num;
+	private String isbn_num;
 	private String book_title;
 	private String writer;
 	private String publisher;

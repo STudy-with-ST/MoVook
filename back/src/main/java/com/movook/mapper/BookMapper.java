@@ -11,7 +11,7 @@ public interface BookMapper {
 	ArrayList<Book> getBookList();
 	ArrayList<Book> bookSearchTitle(String book_title);
 	Book bookRead(int isbn_num);
-	void bookInsert(Book b);
-	void bookUpdate(Book b);
-	void bookDelete(int isbn_num);
+	boolean bookInsert(Book b);
+	boolean bookUpdate(Book b);
+	boolean bookDelete(String isbn_num);
 }
