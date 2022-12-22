@@ -5,6 +5,7 @@ import Nav from "../../components/common/Nav";
 import SelectGroup from "../../components/Main/SelectGroup";
 import Cover from "../../components/Main/Cover";
 import WorkCnt from "../../components/Main/WorkCnt";
+import SpecificInit from "../../components/Main/SpecificInit";
 
 const Main = () => {
   const workData = [
@@ -59,6 +60,7 @@ const Main = () => {
           </Left>
           <Right>
             <WorkCnt />
+            <SpecificInit />
           </Right>
         </Body>
       </Wrapper>
@@ -115,9 +117,9 @@ const Right = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0px 0px 0px 15px;
-  padding: 20px 10px;
+  padding: 20px 10px 0px 10px;
 
-  border: 1px solid green;
+  // border: 1px solid green;
 `;
 
 const CoverWrapper = styled.div`
