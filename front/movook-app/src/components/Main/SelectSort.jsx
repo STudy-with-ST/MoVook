@@ -29,10 +29,9 @@ const Wrapper = styled.div`
   margin: 0px 20px;
   justify-content: right;
 
-  border: 1px solid pink;
+  // border: 1px solid pink;
 `;
 
 const Label = styled.div`
-  displey: flex;
   justify-content: right;
 `;

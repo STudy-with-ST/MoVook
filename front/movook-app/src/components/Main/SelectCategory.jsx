@@ -12,10 +12,10 @@ const SelectCategory = () => {
       <Label>Category</Label>
       <select onChange={categoryChange}>
         <option key="movie" value="movie">
-          <Text>영화</Text>
+          영화
         </option>
         <option key="book" value="book">
-          <Text>책</Text>
+          책
         </option>
       </select>
     </Wrapper>
@@ -31,14 +31,14 @@ const Wrapper = styled.div`
 
   margin: 0px 20px;
 
-  border: 1px solid pink;
+  // border: 1px solid pink;
 `;
 
 const Label = styled.div`
   justify-content: right;
 `;
 
-const Text = styled.text`
-  font-family: "S-CoreDream-6Bold";
-  font-size: 1.5rem;
-`;
+// const Text = styled.text`
+//   font-family: "S-CoreDream-6Bold";
+//   font-size: 1.5rem;
+// `;
