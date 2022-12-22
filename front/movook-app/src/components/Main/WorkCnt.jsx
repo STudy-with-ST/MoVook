@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   display: flex;
   height: 4.5rem;
   justify-content: space-between;
-  padding: 0px 120px;
+  padding: 0px 15%;
 
   // border: 1px solid red;
 `;
