@@ -4,6 +4,7 @@ import Header from "../../components/common/Header";
 import Nav from "../../components/common/Nav";
 import SelectGroup from "../../components/Main/SelectGroup";
 import Cover from "../../components/Main/Cover";
+import WorkCnt from "../../components/Main/WorkCnt";
 
 const Main = () => {
   const workData = [
@@ -56,7 +57,9 @@ const Main = () => {
               ))}
             </CoverWrapper>
           </Left>
-          <Right></Right>
+          <Right>
+            <WorkCnt />
+          </Right>
         </Body>
       </Wrapper>
     </Container>
@@ -109,10 +112,12 @@ const Left = styled.div`
 const Right = styled.div`
   height: 100%;
   width: 40%;
+  display: flex;
+  flex-direction: column;
   margin: 0px 0px 0px 15px;
   padding: 20px 10px;
 
-  // border: 1px solid green;
+  border: 1px solid green;
 `;
 
 const CoverWrapper = styled.div`
@@ -131,7 +136,7 @@ const CoverWrapper = styled.div`
   // grid-gap: 10px;
   background-color: transparent;
 
-  border: 1px solid green;
+  // border: 1px solid green;
 `;
 
 const Title = styled.div`
