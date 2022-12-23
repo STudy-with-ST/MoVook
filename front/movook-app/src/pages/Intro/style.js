@@ -76,6 +76,7 @@ export const StartButton = styled(Link)`
   max-width: 450px;
   min-height: 56px;
   padding: 16px auto;
+  z-index: 10;
   background-color: ${(props) =>
     props["scroll-position"] < 50 ? "white" : "var(--color-primary)"};
   border-radius: 32px;

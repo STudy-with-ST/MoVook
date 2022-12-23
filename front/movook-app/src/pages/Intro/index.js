@@ -27,7 +27,7 @@ const Intro = () => {
             내가 본 영화부터 책까지 한번에 기록해보세요!
           </S.IntroText>
         </S.ContentsWrapper>
-        <S.StartButton scroll-position={scrollPosition}>
+        <S.StartButton scroll-position={scrollPosition} to="/login">
           MOVOOK 시작하기
         </S.StartButton>
       </S.IntroWrapper>
