@@ -32,18 +32,15 @@ public class UserRestController {
     private static final String NO = "fail";
 
     @Autowired
-    public UserRestController(UserService userService, JwtService jwtService) throws Exception {
+    public UserRestController(UserService userService, JwtService jwtService){
         this.userService = userService;
         this.jwtService = jwtService;
-        System.out.println("???");
-        System.out.println(userService.join(new User()));
     }
 
     @ApiOperation(value = "회원 가입", notes = "사용자 회원가입 후, 성공 여부를 반환해 줍니다.")
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody User user){
         try {
-            System.out.println(userService.join(user));
             if (userService.join(user)) {
                 return new ResponseEntity<String>(OK, HttpStatus.OK);
             } else {
@@ -56,7 +53,7 @@ public class UserRestController {
     }
 
     /* 로그인 */
-    @ApiOperation(value = "로그인", notes = "로그인 후, 사용자 정보를 반환해 줍니다.")
+    @ApiOperation(value = "로그인", notes = "로그인 후, 사용자 정보를 반환해 줍니다. 로그인 시 필요한 회원정보(user_id, password).")
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody @ApiParam(value = "로그인 시 필요한 회원정보(user_id, password).", required = true) User user) {
         Map<String, Object> resultMap = new HashMap<>();
@@ -119,10 +116,14 @@ public class UserRestController {
     @PostMapping("/pw/search")
     public ResponseEntity<?> searchPw(@RequestBody User user){
         try {
-            return new ResponseEntity<String>(userService.searchPw(user), HttpStatus.OK);
+            if(userService.searchPw(user)){
+                return new ResponseEntity<String>(OK, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             logger.error("아이디가 존재하지 않습니다. : {}", e);
-            return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -130,10 +131,13 @@ public class UserRestController {
     @PostMapping("/pw/change")
     public ResponseEntity<?> changePw(@RequestBody User user){
         try {
-            return new ResponseEntity<String>(userService.changePw(user), HttpStatus.OK);
+            if(userService.changePw(user)){
+                return new ResponseEntity<String>(OK, HttpStatus.OK);
+            }return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             logger.error("아이디가 존재하지 않습니다. : {}", e);
-            return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

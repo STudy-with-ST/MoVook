@@ -46,12 +46,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean searchPw(User user) {
+    public boolean searchPw(User user) throws Exception {
         return userMapper.searchPw(user);
     }
 
     @Override
-    public boolean changePw(User user) {
+    public boolean changePw(User user) throws Exception {
         return userMapper.changePw(user);
     }
 }

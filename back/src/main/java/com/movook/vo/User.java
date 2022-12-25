@@ -15,5 +15,5 @@ public class User {
 	private String user_id;
 	private String password;
 	private String email;
-	private String birth;
+	private String birthday;
 }
