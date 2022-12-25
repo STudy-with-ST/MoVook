@@ -4,7 +4,9 @@
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-Servers/
+/.metadata/
+/Servers/
+.DS_Store
 
 # User-specific stuff
 back/.idea/**/workspace.xml
