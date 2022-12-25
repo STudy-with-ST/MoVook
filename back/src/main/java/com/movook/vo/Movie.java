@@ -15,9 +15,11 @@ public class Movie {
 	private String movie_id;
 	private String movie_title;
 	private String genre;
-	private String sign;
-	private String summary;
-	private String movie_date;
-	private String movie_language;
-	private String adult;
+	private String image;
+	private String overview;
+	private String released_date;
+	private String original_language;
+	private float vote_average;
+	private float popularity;
+	private boolean adult;
 }
