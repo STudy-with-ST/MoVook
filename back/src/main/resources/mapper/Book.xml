@@ -60,12 +60,12 @@
 		where h.aptName like concat('%',#{aptName},'%')
 		order by aptName
 		
-		select i.aptCode, i.aptName, i.dongName, i.buildYear, i.lat, i.lng, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor
+		<!-- select i.aptCode, i.aptName, i.dongName, i.buildYear, i.lat, i.lng, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor
 		from houseinfo i, housedeal d 
-		where i.aptCode = d.aptcode and i.aptName like concat('%',#{aptName},'%')
-	</select> -->
+		where i.aptCode = d.aptcode and i.aptName like concat('%',#{aptName},'%') -->
+	</select>
 	
-	<!-- <select id="getHouse" parameterType="string" resultType="House">
+	<select id="getHouse" parameterType="string" resultType="House">
 	select h.aptCode, h.aptName, h.buildyear, h.dongCode, h.roadName, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
 				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
 		from houseinfo h
@@ -76,16 +76,16 @@
 		where h.aptCode = #{aptCode}
 		order by aptName
 		
-		select i.aptCode, i.aptName, i.dongName, i.buildYear, i.lat, i.lng, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor
+		<!-- select i.aptCode, i.aptName, i.dongName, i.buildYear, i.lat, i.lng, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor
 		from houseinfo i, housedeal d 
-		where i.aptCode = d.aptcode and i.aptName like concat('%',#{aptName},'%')
-	</select> -->
+		where i.aptCode = d.aptcode and i.aptName like concat('%',#{aptName},'%') -->
+	</select>
 	
-	<!-- <select id="getDeal" parameterType="string" resultType="Deal">
+	<select id="getDeal" parameterType="string" resultType="Deal">
 	select *
 	from housedeal
 	where aptCode = #{aptCode}
 	order by dealYear desc, dealMonth desc, dealDay desc
-	</select> -->
+	</select>
 
 </mapper>
