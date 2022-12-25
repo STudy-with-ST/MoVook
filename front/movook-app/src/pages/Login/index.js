@@ -16,6 +16,8 @@ const Login = () => {
       password: userPw,
     };
     console.log("user: ", user);
+    // 통신 성공이라면,
+    localStorage.setItem("access-token", "token-value");
   };
 
   return (
