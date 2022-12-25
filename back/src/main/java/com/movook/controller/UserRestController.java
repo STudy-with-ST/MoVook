@@ -1,5 +1,4 @@
 package com.movook.controller;
-
 import com.movook.service.JwtService;
 import com.movook.vo.User;
 import io.swagger.annotations.ApiOperation;
