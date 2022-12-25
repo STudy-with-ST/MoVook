@@ -32,15 +32,18 @@ public class UserRestController {
     private static final String NO = "fail";
 
     @Autowired
-    public UserRestController(UserService userService, JwtService jwtService) {
+    public UserRestController(UserService userService, JwtService jwtService) throws Exception {
         this.userService = userService;
         this.jwtService = jwtService;
+        System.out.println("???");
+        System.out.println(userService.join(new User()));
     }
 
     @ApiOperation(value = "회원 가입", notes = "사용자 회원가입 후, 성공 여부를 반환해 줍니다.")
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody User user){
         try {
+            System.out.println(userService.join(user));
             if (userService.join(user)) {
                 return new ResponseEntity<String>(OK, HttpStatus.OK);
             } else {

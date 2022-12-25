@@ -11,37 +11,33 @@ import com.movook.vo.Book;
 @Service
 public class BookServiceImpl implements BookService {
 
-	@Autowired
-	BookMapper mapper;
-	
 	@Override
 	public ArrayList<Book> getBookList() {
-		return mapper.getBookList();
+		return null;
 	}
 
 	@Override
 	public ArrayList<Book> bookSearchTitle(String book_title) {
-		return mapper.bookSearchTitle(book_title);
+		return null;
 	}
 
 	@Override
 	public Book bookRead(int isbn_num) {
-		return mapper.bookRead(isbn_num);
+		return null;
 	}
 
 	@Override
-	public void bookInsert(Book b) {
-		mapper.bookInsert(b);
+	public String bookInsert(Book b) {
+		return null;
 	}
 
 	@Override
-	public void bookUpdate(Book b) {
-		mapper.bookUpdate(b);
+	public String bookUpdate(Book b) {
+		return null;
 	}
 
 	@Override
-	public void bookDelete(int isbn_num) {
-		mapper.bookDelete(isbn_num);
+	public String bookDelete(int isbn_num) {
+		return null;
 	}
-
 }

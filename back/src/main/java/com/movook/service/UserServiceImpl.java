@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
-    private UserMapper userMapper;
+    UserMapper userMapper;
 
     @Autowired
     public UserServiceImpl(UserMapper userMapper) {
@@ -37,21 +37,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Object getRefreshToken(String id) throws Exception {
-        return null;
+        return userMapper.getRefreshToken(id);
     }
 
     @Override
     public void delRefreshToken(String id) throws Exception {
-
+        userMapper.delRefreshToken(id);
     }
 
     @Override
-    public String searchPw(User user) {
-        return null;
+    public boolean searchPw(User user) {
+        return userMapper.searchPw(user);
     }
 
     @Override
-    public String changePw(User user) {
-        return null;
+    public boolean changePw(User user) {
+        return userMapper.changePw(user);
     }
 }
