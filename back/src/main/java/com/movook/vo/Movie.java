@@ -19,5 +19,7 @@ public class Movie {
 	private String overview;
 	private String released_date;
 	private String original_language;
+	private float vote_average;
+	private float popularity;
 	private boolean adult;
 }

@@ -1,27 +1,19 @@
 package com.movook.controller;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.movook.vo.Movie;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.movook.service.MovieService;
 
 import io.swagger.annotations.Api;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -31,9 +23,8 @@ public class MovieRestController {
 	MovieService movieService;
 	private final Logger logger = LoggerFactory.getLogger(MovieRestController.class);
 
-	private String api_key = "e59d8b977e64e85f5ca5fbd375997328";
-	private String base_url = "https://api.themoviedb.org/3";
-	private String img_base_url = "https://image.tmdb.org/t/p/original";
+	private static final String OK = "success";
+	private static final String NO = "fail";
 
 	@Autowired
 	public MovieRestController(MovieService movieService) {
@@ -44,58 +35,24 @@ public class MovieRestController {
 	@GetMapping("/movie/search/{title}")
 	public ResponseEntity<?> getMovieList(@PathVariable String title){
 		try {
-			StringBuilder query = new StringBuilder();
-			query.append(base_url);
-			query.append("/search/movie?api_key=");
-			query.append(api_key);
-			query.append("&region=KR&language=ko-KR");
-			query.append("&query=");
-			query.append(title);
-			URL url = new URL(query.toString());
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-
-			String result = br.readLine();
-			JsonParser jsonParser = new JsonParser();
-			JsonObject jsonObject = (JsonObject) jsonParser.parse(result);
-			logger.info("total_pages {}",jsonObject.get("total_pages").toString());
-			logger.info("results {}",jsonObject.get("results").toString());
-			JsonArray array = jsonObject.get("results").getAsJsonArray();
-
-			return new ResponseEntity<String>(array.toString(), HttpStatus.OK);
+			return new ResponseEntity<List>(movieService.searchMovieByTitle(title), HttpStatus.OK);
 		}catch (Exception e){
 			System.out.println(e.getMessage());
 		}
-		return new ResponseEntity<String>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@GetMapping("/movie/genres")
-	public ResponseEntity<?> getGenreList(){
+	@ApiOperation(value = "영화 추가", notes = "영화의 리뷰를 작성할 때 외래키 사용을 위해 영화 데이터를 추가합니다.")
+	@PostMapping("/movie")
+	public ResponseEntity<?> insertMovie(@RequestBody Movie movie){
 		try {
-			StringBuilder query = new StringBuilder();
-			query.append(base_url);
-			query.append("/genre/movie/list?api_key=");
-			query.append(api_key);
-			query.append("&language=ko-KR");
-
-			URL url = new URL(query.toString());
-			BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-
-			String result = br.readLine();
-			JsonParser jsonParser = new JsonParser();
-			JsonObject jsonObject = (JsonObject) jsonParser.parse(result);
-			logger.info("genre {}", jsonObject);
-			JsonArray genres = jsonObject.get("genres").getAsJsonArray();
-			for (JsonElement genre : genres) {
-				String id = genre.getAsJsonObject().get("id").toString();
-				String name = genre.getAsJsonObject().get("name").toString();
-				System.out.println("('"+id+"', '"+name.substring(1,name.length()-1)+"'),");
-			}
-			return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
-		}catch (Exception e){
+			movieService.movieInsert(movie);
+			return new ResponseEntity<String>(OK,HttpStatus.OK);
+		} catch (Exception e) {
 			logger.warn(e.getMessage());
+			return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<String>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
 
 }
