@@ -4,9 +4,17 @@ import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
 import MovookImg from "../../assets/img/common/img_movook.png";
 import * as S from "./style.js";
+
+// User 객체
+// user_id;
+// password;
+// email;
+// birthday;
+
 const Join = () => {
   const [userId, onChangeUserId] = useInput("");
   const [userPw, onChangeUserPw] = useInput("");
+  const [userEmail, onChangeUserEmail] = useInput("");
   const [userBirth, onChangeUserBirth] = useInput("");
   const [userConfirmPw, onChangeUserConfirmPw] = useInput("");
   const [isValidate, setValidate] = useState(false);
@@ -33,7 +41,8 @@ const Join = () => {
     if (isValidate) {
       const createdUser = {
         id: userId,
-        name: userBirth,
+        email: userEmail,
+        birthday: userBirth,
         password: userPw,
       };
       console.log("createdUser: ", createdUser);
@@ -52,6 +61,14 @@ const Join = () => {
               type="text"
               value={userId}
               onChange={onChangeUserId}
+            />
+            <BasicInput
+              id="input-email"
+              text="Email"
+              type="text"
+              placeholder="Enter Your Email"
+              value={userEmail}
+              onChange={onChangeUserEmail}
             />
             <BasicInput
               id="input-birth"
