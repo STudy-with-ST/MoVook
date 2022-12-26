@@ -40,7 +40,7 @@
 		where user_id = #{user_id}
 	</update>
 
-	<select id="searchPw" parameterType="User">
+	<select id="searchPw" parameterType="User" resultType="String">
 		select password
 		from user
 		where user_id = #{user_id} and email = #{email}

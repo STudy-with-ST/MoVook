@@ -10,6 +10,6 @@ public interface UserService {
     void saveRefreshToken(Map map) throws Exception;
     Object getRefreshToken(String id) throws Exception;
     void delRefreshToken(String id) throws Exception;
-    boolean searchPw(User user) throws Exception;
+    String searchPw(User user) throws Exception;
     boolean changePw(User user) throws Exception;
 }

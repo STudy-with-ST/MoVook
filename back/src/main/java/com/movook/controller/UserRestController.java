@@ -59,7 +59,9 @@ public class UserRestController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
+            System.out.println("???");
             User nUser = userService.login(user);
+            System.out.println(nUser);
             if (nUser != null) {
 
                 // token 생성
@@ -116,8 +118,9 @@ public class UserRestController {
     @PostMapping("/pw/search")
     public ResponseEntity<?> searchPw(@RequestBody User user){
         try {
-            if(userService.searchPw(user)){
-                return new ResponseEntity<String>(OK, HttpStatus.OK);
+            String password = userService.searchPw(user);
+            if(password != null){
+                return new ResponseEntity<String>(password, HttpStatus.OK);
             }else{
                 return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
             }
