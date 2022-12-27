@@ -6,38 +6,45 @@ import SelectGroup from "../../components/Main/SelectGroup";
 import Cover from "../../components/Main/Cover";
 import WorkCnt from "../../components/Main/WorkCnt";
 import SpecificInit from "../../components/Main/SpecificInit";
+import SpecificMovie from "../../components/Main/SpecificMovie";
 
 const Main = () => {
-  const workData = [
+  const reviewData = [
     {
-      id: 10001,
-      url: "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
-      type: "movie",
+      review_id: 1,
+      movie_id: 10001,
+      book_id: null,
+      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
     },
     {
-      id: 20001,
-      url: "https://image.aladin.co.kr/product/27222/22/cover500/e822538010_1.jpg",
-      type: "book",
+      review_id: 2,
+      movie_id: null,
+      book_id: 20001,
+      image: "https://image.aladin.co.kr/product/27222/22/cover500/e822538010_1.jpg",
     },
     {
-      id: 10002,
-      url: "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
-      type: "movie",
+      review_id: 3,
+      movie_id: 10002,
+      book_id: null,
+      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
     },
     {
-      id: 20002,
-      url: "https://image.aladin.co.kr/product/27081/4/cover500/e972538100_1.jpg",
-      type: "book",
+      review_id: 4,
+      movie_id: null,
+      book_id: 20002,
+      image: "https://image.aladin.co.kr/product/27081/4/cover500/e972538100_1.jpg",
     },
     {
-      id: 20003,
-      url: "https://image.aladin.co.kr/product/30707/69/cover500/e172530255_1.jpg",
-      type: "book",
+      review_id: 5,
+      movie_id: null,
+      book_id: 20003,
+      image: "https://image.aladin.co.kr/product/30707/69/cover500/e172530255_1.jpg",
     },
     {
-      id: 10003,
-      url: "https://www.themoviedb.org/t/p/w440_and_h660_face/sWoYDNPNZs5MtzPbirXV73tIHrA.jpg",
-      type: "movie",
+      review_id: 6,
+      movie_id: 10003,
+      book_id: null,
+      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/sWoYDNPNZs5MtzPbirXV73tIHrA.jpg",
     },
   ];
 
@@ -53,27 +60,21 @@ const Main = () => {
               <SelectGroup />
             </Title>
             <CoverWrapper>
-              {workData.map((work) => (
-                <Cover work={work} key={work.id} />
+              {reviewData.map((review) => (
+                <Cover review={review} key={review.review_id} />
               ))}
             </CoverWrapper>
           </Left>
           <Right>
             <WorkCnt />
-            <SpecificInit />
+            {/* <SpecificInit /> */}
+            <SpecificMovie />
           </Right>
         </Body>
       </Wrapper>
     </Container>
   );
 };
-
-{
-  /* <Header />;
-{
-  workData.map((work) => <Cover key={work.id} work={work} />);
-} */
-}
 
 export default Main;
 
@@ -87,7 +88,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: Column;
+  flex-direction: column;
   height: 90vh;
   background-color: white;
 `;
