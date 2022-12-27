@@ -25,8 +25,10 @@ const Login = () => {
       <S.LoginFormContainer>
         <S.PageTitle>로그인</S.PageTitle>
         <S.Description>
-          아직 회원이 아니신가요?{" "}
-          <S.PageLink to="/join">회원가입 하기</S.PageLink>
+          아직 회원이 아니신가요?
+          <S.PageLink to="/join" size="lg">
+            회원가입 하기
+          </S.PageLink>
         </S.Description>
         <S.FormWrapper>
           <form method="POST">
@@ -46,16 +48,19 @@ const Login = () => {
               onChange={onChangeUserPw}
             />
 
-            <S.RememberUserWrapper>
-              <S.CheckBox
-                type="checkbox"
-                name="auto-login"
-                id="auto-login"
-                defaultChecked={isRememberUser}
-                onChange={() => setRememberUser((prev) => !prev)}
-              />
-              <S.Text htmlFor="auto-login">아이디 기억하기</S.Text>
-            </S.RememberUserWrapper>
+            <S.Wrapper>
+              <S.RememberUserWrapper>
+                <S.CheckBox
+                  type="checkbox"
+                  name="auto-login"
+                  id="auto-login"
+                  defaultChecked={isRememberUser}
+                  onChange={() => setRememberUser((prev) => !prev)}
+                />
+                <S.Text htmlFor="auto-login">아이디 기억하기</S.Text>
+              </S.RememberUserWrapper>
+              <S.PageLink>비밀번호 찾기</S.PageLink>
+            </S.Wrapper>
             <BasicButton text="로그인" onClick={handleOnClick} />
           </form>
         </S.FormWrapper>
