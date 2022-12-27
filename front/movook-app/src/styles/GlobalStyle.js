@@ -8,6 +8,7 @@ html {
   --color-text: #333333;
   --color-text-secondary: #999999;
   --color-primary: #99C9A6;
+  --color-background: #ECECEC;
   font-size: 62.5%; 
 }
 
@@ -56,6 +57,14 @@ a{
     background: none;
     padding: 0;
     cursor: pointer;
+  }
+
+  select {
+    border: none;
+    background: none;
+    // -webkit-appearance: none;
+	  // -moz-appearance: none;
+	  // appearance: none;
   }
 `;
 
