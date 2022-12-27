@@ -16,6 +16,12 @@
 		where user_id = #{user_id} and password = #{password}
 	</select>
 
+	<select id="joined" parameterType="String" resultType="boolean">
+		select IF(COUNT(*) = 1, 1, 0)
+		from user
+		where user_id = #{user_id}
+	</select>
+
 	<select id="loadUser" parameterType="User" resultType="User">
 		select user_id, email, birthday
 		from user

@@ -10,6 +10,7 @@ public interface UserMapper {
     boolean join(User user) throws Exception;
     User loadUser(User user) throws Exception;
     boolean findUser(User user) throws Exception;
+    boolean joined(String user_id) throws Exception;
     void saveRefreshToken(Map map) throws Exception;
     Object getRefreshToken(String id) throws Exception;
     void delRefreshToken(String id) throws Exception;

@@ -6,6 +6,7 @@ import java.util.Map;
 
 public interface UserService {
     boolean join(User user) throws Exception;
+    boolean joined(String user_id) throws Exception;
     User login(User user) throws Exception;
     void saveRefreshToken(Map map) throws Exception;
     Object getRefreshToken(String id) throws Exception;
