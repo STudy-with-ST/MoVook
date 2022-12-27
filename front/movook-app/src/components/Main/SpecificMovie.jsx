@@ -40,7 +40,7 @@ const StarIcon = () => {
   return renderReviewStar(reviewOneData.myStar);
 };
 
-const SpecificOne = () => {
+const SpeificMovie = () => {
   return (
     <Wrapper>
       <MiddleWrapper>
@@ -95,7 +95,7 @@ const SpecificOne = () => {
   );
 };
 
-export default SpecificOne;
+export default SpeificMovie;
 
 const Wrapper = styled.div`
   width: 100%;
@@ -135,7 +135,7 @@ const GenreDirectorWrapper = styled.div`
 
 const Block = styled.div`
   width: 100%;
-  margin: 0 0 5% 0;
+  margin: 5% 0;
 
   // border: 1px solid black;
 `;
