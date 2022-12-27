@@ -131,8 +131,8 @@ public class UserRestController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
-    @ApiOperation(value = "비밀번호 찾기", notes = "user_id와 email을 입력받아 비밀번호를 찾는다. 해당하는 사용자가 존재한다면 Email로 인증코드를 발송을 수행 한 뒤 인증코드를 문자열의 형태로 리턴한다.")
-    @PostMapping("/pw/search")
+    @ApiOperation(value = "비밀번호 찾기(이메일 인증)", notes = "user_id와 email을 입력받아 비밀번호를 찾는다. 해당하는 사용자가 존재한다면 Email로 인증코드를 발송을 수행 한 뒤 인증코드를 문자열의 형태로 리턴한다.")
+    @PostMapping("/pw/search/email")
     public ResponseEntity<?> searchPw(@RequestBody User user){
         try {
             String password = userService.searchPw(user);
@@ -148,8 +148,8 @@ public class UserRestController {
         }
     }
 
-    @ApiOperation(value = "비밀번호 변경", notes = "인증코드를 옳바르게 입력했을때 호출한다. user_id와 password를 입력받아 password를 변경한다.")
-    @PostMapping("/pw/change")
+    @ApiOperation(value = "비밀번호 찾기(이메일 인증 후 초기화)", notes = "인증코드를 올바르게 입력했을 때 호출한다. user_id와 password를 입력받아 password를 변경한다.")
+    @PostMapping("/pw/search/reset")
     public ResponseEntity<?> changePw(@RequestBody User user){
         try {
             if(userService.changePw(user)){
