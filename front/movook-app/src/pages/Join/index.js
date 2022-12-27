@@ -4,6 +4,7 @@ import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
 import MovookImg from "../../assets/img/common/img_movook.png";
 import * as S from "./style.js";
+import { userApi } from "../../api";
 
 // User 객체
 // user_id;
@@ -35,18 +36,21 @@ const Join = () => {
     }
   };
 
-  const handleOnClick = (e) => {
+  const handleOnClick = async (e) => {
     e.preventDefault();
     validatePassword();
-    if (isValidate) {
-      const createdUser = {
-        id: userId,
-        email: userEmail,
-        birthday: userBirth,
-        password: userPw,
-      };
-      console.log("createdUser: ", createdUser);
-    }
+
+    const createdUser = {
+      user_id: userId,
+      email: userEmail,
+      birthday: userBirth,
+      password: userPw,
+    };
+
+    await userApi
+      .join(createdUser)
+      .then(({ data }) => console.log("성공: ", data))
+      .catch((error) => console.log("실패: ", error));
   };
   return (
     <S.LoginContainer>
@@ -57,7 +61,7 @@ const Join = () => {
             <BasicInput
               id="input-id"
               text="ID"
-              placeholder="Enter Your ID"
+              placeholder="ID"
               type="text"
               value={userId}
               onChange={onChangeUserId}
@@ -66,7 +70,7 @@ const Join = () => {
               id="input-email"
               text="Email"
               type="text"
-              placeholder="Enter Your Email"
+              placeholder="Email"
               value={userEmail}
               onChange={onChangeUserEmail}
             />
@@ -79,14 +83,14 @@ const Join = () => {
             />
             <BasicInput
               text="Password"
-              placeholder="Enter Your Password"
+              placeholder="Password"
               type="password"
               value={userPw}
               onChange={onChangeUserPw}
             />
             <BasicInput
               text="Confirm Password"
-              placeholder="Enter Your Confirm Password"
+              placeholder="Confirm Password"
               type="password"
               value={userConfirmPw}
               onChange={onChangeUserConfirmPw}
