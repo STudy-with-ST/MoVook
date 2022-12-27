@@ -7,6 +7,7 @@ import Cover from "../../components/Main/Cover";
 import WorkCnt from "../../components/Main/WorkCnt";
 import SpecificInit from "../../components/Main/SpecificInit";
 import SpecificMovie from "../../components/Main/SpecificMovie";
+import SpecificBook from "../../components/Main/SpecificBook";
 
 const Main = () => {
   const reviewData = [
@@ -68,7 +69,8 @@ const Main = () => {
           <Right>
             <WorkCnt />
             {/* <SpecificInit /> */}
-            <SpecificMovie />
+            {/* <SpecificMovie /> */}
+            <SpecificBook />
           </Right>
         </Body>
       </Wrapper>
