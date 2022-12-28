@@ -1,4 +1,5 @@
 package com.movook.controller;
+import com.movook.service.EmailService;
 import com.movook.service.JwtService;
 import com.movook.vo.User;
 import io.swagger.annotations.ApiOperation;
@@ -27,14 +28,31 @@ public class UserRestController {
 
     private UserService userService;
     private JwtService jwtService;
+    private EmailService emailService;
 
     private static final String OK = "success";
     private static final String NO = "fail";
 
     @Autowired
-    public UserRestController(UserService userService, JwtService jwtService){
+    public UserRestController(UserService userService, JwtService jwtService, EmailService emailService) {
         this.userService = userService;
         this.jwtService = jwtService;
+        this.emailService = emailService;
+    }
+
+    @ApiOperation(value = "아이디 중복 확인", notes = "아이디를 입력받아 이미 사용중인지 판별합니다. 사용 중이라면 'duplicated'를 사용 가능하면 'available'을 리턴합니다.")
+    @GetMapping("/id/check/{user_id}")
+    public ResponseEntity<?> join(@PathVariable String user_id){
+        try {
+            if (!userService.joined(user_id)) {
+                return new ResponseEntity<String>("available", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<String>("duplicated", HttpStatus.OK);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<String>(e.getMessage()+" error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @ApiOperation(value = "회원 가입", notes = "사용자 회원가입 후, 성공 여부를 반환해 줍니다.")
@@ -59,13 +77,14 @@ public class UserRestController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
+            System.out.println("???");
             User nUser = userService.login(user);
+            System.out.println(nUser);
             if (nUser != null) {
 
                 // token 생성
                 String accessToken = jwtService.createAccessToken("user_id", nUser.getUser_id());
                 String refreshToken = jwtService.createRefreshToken("user_id", nUser.getUser_id());
-
 
                 // refresh token을 데이터베이스에 저장
                 Map<String, String> map = new HashMap<>();
@@ -112,23 +131,25 @@ public class UserRestController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
-    @ApiOperation(value = "비밀번호 찾기", notes = "user_id와 email을 입력받아 비밀번호를 찾는다.")
-    @PostMapping("/pw/search")
+    @ApiOperation(value = "비밀번호 찾기(이메일 인증)", notes = "user_id와 email을 입력받아 비밀번호를 찾는다. 해당하는 사용자가 존재한다면 Email로 인증코드를 발송을 수행 한 뒤 인증코드를 문자열의 형태로 리턴한다.")
+    @PostMapping("/pw/search/email")
     public ResponseEntity<?> searchPw(@RequestBody User user){
         try {
-            if(userService.searchPw(user)){
-                return new ResponseEntity<String>(OK, HttpStatus.OK);
+            String password = userService.searchPw(user);
+            if(password != null){
+                String confirm = emailService.sendMessage(user.getEmail());
+                return new ResponseEntity<String>(confirm, HttpStatus.OK);
             }else{
                 return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
             }
         } catch (Exception e) {
             logger.error("아이디가 존재하지 않습니다. : {}", e);
-            return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
         }
     }
 
-    @ApiOperation(value = "비밀번호 변경", notes = "user_id와 email을 입력받아 비밀번호를 찾는다.")
-    @PostMapping("/pw/change")
+    @ApiOperation(value = "비밀번호 찾기(이메일 인증 후 초기화)", notes = "인증코드를 올바르게 입력했을 때 호출한다. user_id와 password를 입력받아 password를 변경한다.")
+    @PostMapping("/pw/search/reset")
     public ResponseEntity<?> changePw(@RequestBody User user){
         try {
             if(userService.changePw(user)){
@@ -136,7 +157,6 @@ public class UserRestController {
             }return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             logger.error("아이디가 존재하지 않습니다. : {}", e);
-
             return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

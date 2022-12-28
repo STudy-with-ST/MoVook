@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public boolean joined(String user_id) throws Exception {
+        return userMapper.joined(user_id);
+    }
+
+    @Override
     public User login(User user) throws Exception {
         if(userMapper.findUser(user)){
             return userMapper.loadUser(user);
@@ -46,7 +51,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean searchPw(User user) throws Exception {
+    public String searchPw(User user) throws Exception {
         return userMapper.searchPw(user);
     }
 
