@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Cover from "./Cover";
+import { Link } from "react-router-dom";
 import { FiBook, FiLock, FiUnlock, FiStar, FiEdit, FiTrash2 } from "react-icons/fi";
 
 const reviewOneData = {
@@ -77,7 +78,9 @@ const SpecificBook = () => {
 
       <BtnWrapper>
         <IconWrapper>
+          {/* <Link to="/WriteReview"> */}
           <FiTrash2 size="25" color="red" />
+          {/* </Link> */}
         </IconWrapper>
         <IconWrapper>
           <FiEdit size="25" />

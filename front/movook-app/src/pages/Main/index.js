@@ -1,4 +1,5 @@
 import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/common/Header";
 import Nav from "../../components/common/Nav";
@@ -9,6 +10,7 @@ import SpecificInit from "../../components/Main/SpecificInit";
 import SpecificMovie from "../../components/Main/SpecificMovie";
 import SpecificBook from "../../components/Main/SpecificBook";
 import WriteReview from "../../components/Main/WriteReview";
+import CoverAdd from "../../components/Main/CoverAdd";
 
 const Main = () => {
   const reviewData = [
@@ -58,21 +60,30 @@ const Main = () => {
           <Nav />
           <Left>
             <Title>
-              <Text>나의 MOVOOK</Text>
+              <Link to="/">
+                <Text>나의 MOVOOK</Text>
+              </Link>
               <SelectGroup />
             </Title>
             <CoverWrapper>
+              <Link to="/WriteReview">
+                <CoverAdd />
+              </Link>
               {reviewData.map((review) => (
-                <Cover review={review} key={review.review_id} />
+                <Link to="/SpecificMovie" key={review.review_id}>
+                  <Cover review={review} />
+                </Link>
               ))}
             </CoverWrapper>
           </Left>
           <Right>
             <WorkCnt />
-            {/* <SpecificInit /> */}
-            {/* <SpecificMovie /> */}
-            {/* <SpecificBook /> */}
-            <WriteReview />
+            <Routes>
+              <Route path="/" element={<SpecificInit />} />
+              <Route path="/SpecificMovie" element={<SpecificMovie />} />
+              {/* <SpecificBook /> */}
+              <Route path="/WriteReview" element={<WriteReview />} />
+            </Routes>
           </Right>
         </Body>
       </Wrapper>
