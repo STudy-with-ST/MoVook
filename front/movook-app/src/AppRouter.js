@@ -7,17 +7,22 @@ import Plan from "./pages/Plan";
 import Review from "./pages/Review";
 import Join from "./pages/Join";
 const AppRouter = () => {
-  // 로그인 여부에 따라 나누기
+  // 사용자의 로그인 여부에 따른 라우터 처리
   return (
     <Router>
-      <Routes>
-        <Route path="/*" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} />
-        <Route path="/intro" element={<Intro />} />
-        <Route path="/plan" element={<Plan />} />
-        <Route path="/review" element={<Review />} />
-      </Routes>
+      {localStorage.getItem("accessToken") !== null ? (
+        <Routes>
+          <Route path="/*" element={<Main />} />
+          <Route path="/plan" element={<Plan />} />
+          <Route path="/review" element={<Review />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/intro" element={<Intro />} />
+        </Routes>
+      )}
     </Router>
   );
 };
