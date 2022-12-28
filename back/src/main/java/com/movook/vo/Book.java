@@ -19,4 +19,5 @@ public class Book {
 	private String publisher;
 	private String book_date;
 	private String image;
+	private String comment;
 }
