@@ -11,6 +11,13 @@ import com.movook.vo.Book;
 @Service
 public class BookServiceImpl implements BookService {
 
+	BookMapper mapper;
+
+	@Autowired
+	public BookServiceImpl(BookMapper mapper) {
+		this.mapper = mapper;
+	}
+
 	@Override
 	public ArrayList<Book> getBookList() {
 		return null;
