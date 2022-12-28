@@ -19,7 +19,8 @@ public class Review {
 	private String end_date;
 	private String regist_date;
 	private String open_use;
-	private int isbn_num;
+	private String book_seq_num;
 	private String movie_id;
 	private String user_id;
+	private String review_image;
 }

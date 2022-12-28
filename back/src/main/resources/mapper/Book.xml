@@ -17,5 +17,18 @@
 			#{seq_num}, #{isbn_num}, #{book_title}, #{writer}, #{publisher}, #{image}
 		)
 	</insert>
-
+	<select id="bookSearchTitle" parameterType="string" resultType="Book">
+		select *
+		from book
+		where book_title = #{book_title}
+	</select>
+	
+	<update id="bookUpdate" parameterType="Book">
+		update book set isbn_num = #{isbn_num}, publisher=#{publisher}, image=#{image} 
+		where seq_num = #{seq_num} 
+	</update>
+	
+	 <delete id="bookDelete" parameterType="string">
+		delete from book where isbn_num = #{isbn_num}
+	</delete>
 </mapper>

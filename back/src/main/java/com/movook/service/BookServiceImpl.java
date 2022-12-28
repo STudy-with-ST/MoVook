@@ -27,17 +27,17 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public String bookInsert(Book b) {
-		return null;
+	public boolean bookInsert(Book b) {
+		return mapper.bookInsert(b);
 	}
 
 	@Override
-	public String bookUpdate(Book b) {
-		return null;
+	public boolean bookUpdate(Book b) {
+		return mapper.bookUpdate(b);
 	}
 
 	@Override
-	public String bookDelete(int isbn_num) {
-		return null;
+	public boolean bookDelete(String isbn_num) {
+		return mapper.bookDelete(isbn_num);
 	}
 }

@@ -11,6 +11,15 @@ back/.idea/
 back/.settings/
 back/bin/
 
+# plus
+back/.idea/.gitignore
+back/.idea/compiler.xml
+back/.idea/encodings.xml
+back/.idea/jarRepositories.xml
+back/.idea/misc.xml
+back/.idea/vcs.xml
+back/.settings/org.springframework.ide.eclipse.prefs
+
 # User-specific stuff
 back/.idea/**/workspace.xml
 back/.idea/**/tasks.xml
