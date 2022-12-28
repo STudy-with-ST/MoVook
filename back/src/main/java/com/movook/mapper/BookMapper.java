@@ -13,5 +13,4 @@ public interface BookMapper {
 	Book bookRead(int isbn_num);
 	boolean bookInsert(Book b);
 	boolean bookUpdate(Book b);
-	boolean bookDelete(String isbn_num);
 }

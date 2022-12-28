@@ -17,7 +17,6 @@
 			#{seq_num}, #{isbn_num}, #{book_title}, #{writer}, #{publisher}, #{image}
 		)
 	</insert>
-	
 	<select id="bookSearchTitle" parameterType="string" resultType="Book">
 		select *
 		from book
