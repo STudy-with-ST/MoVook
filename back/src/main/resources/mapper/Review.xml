@@ -5,63 +5,49 @@
 
 <!-- 이 파일과 매핑되어 실행될 자바 매퍼 파일 정보 -->
 <mapper namespace="com.movook.mapper.ReviewMapper">
+    <select id="findAll" parameterType="com.movook.vo.SearchVo" resultType="com.movook.vo.Review">
+   		select *
+   		from review
+   		order by review_id DESC
+   		LIMIT #{offset}, #{recordSize}
+    </select>
    
-   	<!-- <select id="QASearchAll" resultType="QA">
-		select *
-		from qa
-		where qa_question_num = 0
-		order by qa_register_date DESC
-	</select>
-	
-	<select id="QASearch" resultType="QA">
-		select *
-		from qa
-		where userinfo_num = #{userinfo_num}
-		order by qa_register_date DESC
-	</select> -->
-	
-	<!-- <select id="noticeSearchByTitle" parameterType="string" resultType="QA">
-		select *
-		from notice
-		where notice_title like concat('%',#{notice_title},'%')
-		order by notice_register_date DESC
-	</select> -->
-	
-	<!-- <select id="QARead" parameterType="int" resultType="QA">
-		select *
-		from qa
-		where qa_num = #{qa_num}
-	</select>
-	
-	<select id="QaAnswerRead" parameterType="int" resultType="QA">
-		select *
-		from qa
-		where qa_question_num = #{qa_question_num}
-	</select>
-	
-	<insert id="QAInsert" parameterType="QA">
-		insert into qa(userinfo_num, qa_title, qa_content, qa_register_date, qa_update_date)
-		values(#{userinfo_num}, #{qa_title}, #{qa_content}, sysdate(), sysdate())
+    <select id="count" parameterType="com.movook.vo.SearchVo" resultType="int">
+   		select COUNT(*)
+   		from review
+    </select>
+  
+	<insert id="reviewInsert" parameterType="Review">
+		insert into review(review_id, comment, star_grade, start_date, end_date, regist_date, open_use, movie_id, user_id, book_seq_num, review_image) 
+		values(
+			#{review_id}, #{comment}, #{star_grade}, #{start_date}, #{end_date}, #{regist_date}, #{open_use}, #{movie_id}, #{user_id}, #{book_seq_num}, #{review_image}
+		)
 	</insert>
 	
-	<insert id="AnswerInsert" parameterType="QA">
-		insert into qa(userinfo_num, qa_title, qa_content, qa_register_date, qa_update_date, qa_question_num)
-		values(#{userinfo_num}, #{qa_title}, #{qa_content}, sysdate(), sysdate(), #{qa_question_num})
-	</insert>
+	<select id="getReviewList" parameterType="string" resultType="Review">
+		select *
+		from review
+		where open_use = #{open_use}
+	</select>
 	
-	<update id="QAUpdate" parameterType="QA">
-		update qa 
-		set qa_title = #{qa_title}, qa_content=#{qa_content}, qa_update_date=sysdate()
-		where qa_num = #{qa_num} 
+	<select id="getReviewUser" parameterType="string" resultType="Review">
+		select *
+		from review
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="ReviewDetail" parameterType="string" resultType="Review">
+		select *
+		from review
+		where review_id = #{review_id}
+	</select>
+	
+	<update id="reviewUpdate" parameterType="Review">
+		update review set comment = #{comment}, star_grade=#{star_grade}, regist_date=sysdate(), open_use=#{open_use} 
+		where review_id = #{review_id} 
 	</update>
 	
-	<update id="QAStateChange" parameterType="QA">
-		 update qa set qa_status = (case qa_status when 1 then 0 when 0 then 1 end) 
-		 where qa_num = #{qa_num}
-	</update>
-	
-	 <delete id="QADelete" parameterType="int">
-		delete from qa where qa_num = #{qa_num}
-	</delete> -->
-
+	 <delete id="reviewDelete" parameterType="string">
+		delete from review where review_id = #{review_id}
+	</delete>
 </mapper>

@@ -22,4 +22,5 @@ public class Review {
 	private String book_seq_num;
 	private String movie_id;
 	private String user_id;
+	private String review_image;
 }
