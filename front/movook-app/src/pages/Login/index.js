@@ -1,28 +1,47 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BasicButton from "../../components/common/BasicButton";
 import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
 import MovookImg from "../../assets/img/common/img_movook.png";
 import * as S from "./style.js";
 import { userApi } from "../../api";
+import moment from "moment";
+import Cookie from "js-cookie";
+
 const Login = () => {
   const [userId, onChangeUserId] = useInput("");
   const [userPw, onChangeUserPw] = useInput("");
   const [isRememberUser, setRememberUser] = useState(false);
+
+  const navigate = useNavigate();
+
   const handleOnClick = (e) => {
     e.preventDefault();
+
+    if (!userId || !userPw) {
+      alert("아이디와 비밀번호를 입력해주세요!");
+      return;
+    }
 
     const user = {
       user_id: userId,
       password: userPw,
     };
-    console.log("user: ", user);
+
+    console.log("[Login] user: ", user);
+
     // 통신 성공이라면,
     userApi
       .login(user)
       .then(({ data }) => {
-        localStorage.setItem("access_token", data.access_token);
-        localStorage.setItem("refresh_token", data.refresh_token);
+        localStorage.setItem("accessToken", data.access_token);
+        Cookie.set("refreshToken", data.refresh_token);
+        localStorage.setItem(
+          "expiresAt",
+          moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
+        );
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
