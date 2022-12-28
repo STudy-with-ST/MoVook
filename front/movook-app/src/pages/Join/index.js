@@ -19,6 +19,7 @@ const Join = () => {
   const [userBirth, onChangeUserBirth] = useInput("");
   const [userConfirmPw, onChangeUserConfirmPw] = useInput("");
   const [isValidate, setValidate] = useState(false);
+  const [isConfirmId, setConfirmId] = useState(false);
 
   useEffect(() => {
     if (isValidate) {
@@ -36,7 +37,7 @@ const Join = () => {
     }
   };
 
-  const handleOnClick = async (e) => {
+  const handleOnClick = (e) => {
     e.preventDefault();
     validatePassword();
 
@@ -47,7 +48,7 @@ const Join = () => {
       password: userPw,
     };
 
-    await userApi
+    userApi
       .join(createdUser)
       .then(({ data }) => console.log("성공: ", data))
       .catch((error) => console.log("실패: ", error));
@@ -58,14 +59,17 @@ const Join = () => {
         <S.PageTitle>회원가입</S.PageTitle>
         <S.FormWrapper>
           <form method="POST">
-            <BasicInput
-              id="input-id"
-              text="ID"
-              placeholder="ID"
-              type="text"
-              value={userId}
-              onChange={onChangeUserId}
-            />
+            <S.IdWrapper>
+              <BasicInput
+                id="input-id"
+                text="ID"
+                placeholder="ID"
+                type="text"
+                value={userId}
+                onChange={onChangeUserId}
+              />
+              <S.ConfirmButton>중복 확인</S.ConfirmButton>
+            </S.IdWrapper>
             <BasicInput
               id="input-email"
               text="Email"

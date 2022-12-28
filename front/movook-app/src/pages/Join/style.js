@@ -62,7 +62,6 @@ export const FormWrapper = styled.div`
   max-width: 540px;
   min-width: 340px;
   width: 100%;
-  margin: 0px auto;
   background-color: transparent;
 `;
 
@@ -79,4 +78,18 @@ export const ImgContainer = styled.div`
     right: 1rem;
     width: 72%;
   }
+`;
+
+export const IdWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: red;
+  width: 80%;
+`;
+
+export const ConfirmButton = styled.button`
+  width: 60px;
+  height: 32px;
+  background-color: pink;
 `;

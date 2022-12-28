@@ -4,6 +4,7 @@ import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
 import MovookImg from "../../assets/img/common/img_movook.png";
 import * as S from "./style.js";
+import { userApi } from "../../api";
 const Login = () => {
   const [userId, onChangeUserId] = useInput("");
   const [userPw, onChangeUserPw] = useInput("");
@@ -12,12 +13,18 @@ const Login = () => {
     e.preventDefault();
 
     const user = {
-      id: userId,
+      user_id: userId,
       password: userPw,
     };
     console.log("user: ", user);
     // 통신 성공이라면,
-    localStorage.setItem("access-token", "token-value");
+    userApi
+      .login(user)
+      .then(({ data }) => {
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("refresh_token", data.refresh_token);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
