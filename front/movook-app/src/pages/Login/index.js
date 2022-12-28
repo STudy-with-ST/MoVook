@@ -85,7 +85,7 @@ const Login = () => {
                 />
                 <S.Text htmlFor="auto-login">아이디 기억하기</S.Text>
               </S.RememberUserWrapper>
-              <S.PageLink>비밀번호 찾기</S.PageLink>
+              <S.PageLink to="/password/find">비밀번호 찾기</S.PageLink>
             </S.Wrapper>
             <BasicButton text="로그인" onClick={handleOnClick} />
           </form>

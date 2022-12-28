@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import Plan from "./pages/Plan";
 import Review from "./pages/Review";
 import Join from "./pages/Join";
+import FindPassword from "./pages/FindPassword";
 const AppRouter = () => {
   // 사용자의 로그인 여부에 따른 라우터 처리
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/intro" element={<Intro />} />
+          <Route path="/password/find" element={<FindPassword />} />
         </Routes>
       )}
     </Router>

@@ -13,4 +13,5 @@ api.interceptors.request.use(refresh, refreshErrorHandle);
 export const userApi = {
   join: (user) => api.post("/join", user),
   login: (user) => api.post("/login", user),
+  findPassword: (user) => api.post("/pw/search/email", user),
 };
