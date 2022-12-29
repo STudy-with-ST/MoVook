@@ -12,7 +12,7 @@ const BasicInput = ({
 }) => {
   return (
     <InputContainer>
-      <InputLabel>{text}</InputLabel>
+      {/* <InputLabel>{text}</InputLabel> */}
       <Input
         type={type}
         value={value}
@@ -36,15 +36,21 @@ const InputLabel = styled.label`
   font-family: "S-CoreDream-6Bold";
   font-style: normal;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 33px;
   letter-spacing: 0.1em;
 `;
 
 const Input = styled.input`
-  width: 100%;
-  max-height: 80px;
-  border: 2px solid var(--color-primary);
+  width: 80%;
+  height: 40px;
+  /* border: 1px solid var(--color-primary); */
+  border: 1px solid var(--color-background);
+  background-color: #f8f8f8;
   border-radius: 32px;
   padding: 16px;
+
+  &:focus {
+    border: 2px solid var(--color-primary);
+  }
 `;

@@ -4,12 +4,22 @@ import BasicInput from "../../components/common/BasicInput";
 import { useInput } from "../../hooks/useInput";
 import MovookImg from "../../assets/img/common/img_movook.png";
 import * as S from "./style.js";
+import { userApi } from "../../api";
+
+// User 객체
+// user_id;
+// password;
+// email;
+// birthday;
+
 const Join = () => {
   const [userId, onChangeUserId] = useInput("");
   const [userPw, onChangeUserPw] = useInput("");
+  const [userEmail, onChangeUserEmail] = useInput("");
   const [userBirth, onChangeUserBirth] = useInput("");
   const [userConfirmPw, onChangeUserConfirmPw] = useInput("");
   const [isValidate, setValidate] = useState(false);
+  const [isConfirmId, setConfirmId] = useState(false);
 
   useEffect(() => {
     if (isValidate) {
@@ -30,14 +40,18 @@ const Join = () => {
   const handleOnClick = (e) => {
     e.preventDefault();
     validatePassword();
-    if (isValidate) {
-      const createdUser = {
-        id: userId,
-        name: userBirth,
-        password: userPw,
-      };
-      console.log("createdUser: ", createdUser);
-    }
+
+    const createdUser = {
+      user_id: userId,
+      email: userEmail,
+      birthday: userBirth,
+      password: userPw,
+    };
+
+    userApi
+      .join(createdUser)
+      .then(({ data }) => console.log("성공: ", data))
+      .catch((error) => console.log("실패: ", error));
   };
   return (
     <S.LoginContainer>
@@ -45,13 +59,24 @@ const Join = () => {
         <S.PageTitle>회원가입</S.PageTitle>
         <S.FormWrapper>
           <form method="POST">
+            <S.IdWrapper>
+              <BasicInput
+                id="input-id"
+                text="ID"
+                placeholder="ID"
+                type="text"
+                value={userId}
+                onChange={onChangeUserId}
+              />
+              <S.ConfirmButton>중복 확인</S.ConfirmButton>
+            </S.IdWrapper>
             <BasicInput
-              id="input-id"
-              text="ID"
-              placeholder="Enter Your ID"
+              id="input-email"
+              text="Email"
               type="text"
-              value={userId}
-              onChange={onChangeUserId}
+              placeholder="Email"
+              value={userEmail}
+              onChange={onChangeUserEmail}
             />
             <BasicInput
               id="input-birth"
@@ -62,14 +87,14 @@ const Join = () => {
             />
             <BasicInput
               text="Password"
-              placeholder="Enter Your Password"
+              placeholder="Password"
               type="password"
               value={userPw}
               onChange={onChangeUserPw}
             />
             <BasicInput
               text="Confirm Password"
-              placeholder="Enter Your Confirm Password"
+              placeholder="Confirm Password"
               type="password"
               value={userConfirmPw}
               onChange={onChangeUserConfirmPw}

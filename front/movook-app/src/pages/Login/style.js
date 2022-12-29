@@ -54,8 +54,10 @@ export const Description = styled.label`
 
 export const PageLink = styled(Link)`
   color: var(--color-primary);
-  font-size: 1.7rem;
-  ${Description}
+  font-size: ${(props) => (props.size === "lg" ? "1.7rem" : "1.26rem")};
+  font-family: "S-CoreDream-6Bold";
+  justify-self: flex-end;
+  margin-left: 4px;
 `;
 
 export const FormWrapper = styled.div`
@@ -99,4 +101,11 @@ export const Text = styled.label`
 export const RememberUserWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const Wrapper = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

@@ -2,25 +2,33 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../../assets/img/common/img_logo.png";
 import TestUser from "../../assets/img/common/img_user.png";
-import ViewCounter from "./ViewCounter";
 import { FiLogOut } from "react-icons/fi";
+import { userApi } from "../../api";
+import { useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    userApi
+      .logout(localStorage.getItem("loginUser"))
+      .then(() => {
+        localStorage.clear();
+        navigate("/login");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <Container>
       <Wrapper>
         <img src={Logo} alt="logo" width="48px" />
         <LogoTitle>MOVOOK</LogoTitle>
       </Wrapper>
-      {/* <Wrapper>
-        <ViewCounter color="pink" text="읽은 도서" count="2" />
-        <ViewCounter color="pink" text="시청한 영화" count="3" />
-        <ViewCounter color="pink" text="총 작품 수" count="5" />
-      </Wrapper> */}
       <Wrapper>
         <Text>Hello, </Text>
-        <Text size="lg">TaeBong</Text>
+        <Text size="lg">{localStorage.getItem("loginUser")}</Text>
         <UserImg src={TestUser} alt="user-img" />
-        <FiLogOut size="20" color="#999" />
+        <FiLogOut size="20" color="#999" onClick={handleLogout} />
       </Wrapper>
     </Container>
   );
@@ -50,7 +58,8 @@ const LogoTitle = styled.h2`
 `;
 
 const Text = styled.label`
-  font-family: ${(props) => (props.size === "lg" ? "S-CoreDream-6Bold" : "S-CoreDream-4Regular")};
+  font-family: ${(props) =>
+    props.size === "lg" ? "S-CoreDream-6Bold" : "S-CoreDream-4Regular"};
   font-size: ${(props) => (props.size === "lg" ? "1.6rem" : "1.4rem")};
   margin-right: 4px;
 `;

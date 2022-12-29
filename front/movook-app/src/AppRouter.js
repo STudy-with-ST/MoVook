@@ -6,17 +6,18 @@ import Main from "./pages/Main";
 import Plan from "./pages/Plan";
 import Review from "./pages/Review";
 import Join from "./pages/Join";
+import FindPassword from "./pages/FindPassword";
 const AppRouter = () => {
-  // 로그인 여부에 따라 나누기
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/home" element={<Main />} />
+        <Route path="/plan" element={<Plan />} />
+        <Route path="/review" element={<Review />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/intro" element={<Intro />} />
-        <Route path="/plan" element={<Plan />} />
-        <Route path="/review" element={<Review />} />
+        <Route path="/password/find" element={<FindPassword />} />
       </Routes>
     </Router>
   );

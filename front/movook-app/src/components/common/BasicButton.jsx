@@ -7,9 +7,9 @@ const BasicButton = ({ text, onClick }) => {
 export default BasicButton;
 
 const Button = styled.button`
-  width: 100%;
+  width: 80%;
   color: #fff;
-  max-height: 80px;
+  max-height: 48px;
   border-radius: 32px;
   padding: 16px;
   background-color: var(--color-primary);

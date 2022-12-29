@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { FiGrid, FiCalendar, FiGlobe } from "react-icons/fi";
 
 const Nav = () => {
   return (
     <Container>
       <Circle isClicked={true}>
-        <FiGrid size="25" color="white" />
+        <Link to="/">
+          <FiGrid size="25" color="white" />
+        </Link>
       </Circle>
-      <Circle isClicked={false}>
-        <FiCalendar size="25" color="black" />
-      </Circle>
-      <Circle isClicked={false}>
-        <FiGlobe size="25" color="black" />
-      </Circle>
+      <Link to="/plan">
+        <Circle isClicked={false}>
+          <FiCalendar size="25" color="black" />
+        </Circle>
+      </Link>
+      <Link to="/review">
+        <Circle isClicked={false}>
+          <FiGlobe size="25" color="black" />
+        </Circle>
+      </Link>
     </Container>
   );
 };
@@ -38,7 +45,8 @@ const Circle = styled.div`
   border-radius: 50%;
 
   background-color: var(--color-primary);
-  background-color: ${(props) => (props.isClicked ? `var(--color-primary)` : `transparent`)};
+  background-color: ${(props) =>
+    props.isClicked ? `var(--color-primary)` : `transparent`};
 
   margin: 10px;
   align-items: center;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/common/Header";
 import Nav from "../../components/common/Nav";
@@ -7,6 +8,9 @@ import Cover from "../../components/Main/Cover";
 import WorkCnt from "../../components/Main/WorkCnt";
 import SpecificInit from "../../components/Main/SpecificInit";
 import SpecificMovie from "../../components/Main/SpecificMovie";
+import SpecificBook from "../../components/Main/SpecificBook";
+import WriteReview from "../../components/Main/WriteReview";
+import CoverAdd from "../../components/Main/CoverAdd";
 
 const Main = () => {
   const reviewData = [
@@ -14,37 +18,43 @@ const Main = () => {
       review_id: 1,
       movie_id: 10001,
       book_id: null,
-      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
+      image:
+        "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
     },
     {
       review_id: 2,
       movie_id: null,
       book_id: 20001,
-      image: "https://image.aladin.co.kr/product/27222/22/cover500/e822538010_1.jpg",
+      image:
+        "https://image.aladin.co.kr/product/27222/22/cover500/e822538010_1.jpg",
     },
     {
       review_id: 3,
       movie_id: 10002,
       book_id: null,
-      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
+      image:
+        "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
     },
     {
       review_id: 4,
       movie_id: null,
       book_id: 20002,
-      image: "https://image.aladin.co.kr/product/27081/4/cover500/e972538100_1.jpg",
+      image:
+        "https://image.aladin.co.kr/product/27081/4/cover500/e972538100_1.jpg",
     },
     {
       review_id: 5,
       movie_id: null,
       book_id: 20003,
-      image: "https://image.aladin.co.kr/product/30707/69/cover500/e172530255_1.jpg",
+      image:
+        "https://image.aladin.co.kr/product/30707/69/cover500/e172530255_1.jpg",
     },
     {
       review_id: 6,
       movie_id: 10003,
       book_id: null,
-      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/sWoYDNPNZs5MtzPbirXV73tIHrA.jpg",
+      image:
+        "https://www.themoviedb.org/t/p/w440_and_h660_face/sWoYDNPNZs5MtzPbirXV73tIHrA.jpg",
     },
   ];
 
@@ -56,19 +66,30 @@ const Main = () => {
           <Nav />
           <Left>
             <Title>
-              <Text>나의 MOVOOK</Text>
+              <Link to="/">
+                <Text>나의 MOVOOK</Text>
+              </Link>
               <SelectGroup />
             </Title>
             <CoverWrapper>
+              <Link to="/WriteReview">
+                <CoverAdd />
+              </Link>
               {reviewData.map((review) => (
-                <Cover review={review} key={review.review_id} />
+                <Link to="/SpecificMovie" key={review.review_id}>
+                  <Cover review={review} />
+                </Link>
               ))}
             </CoverWrapper>
           </Left>
           <Right>
             <WorkCnt />
-            {/* <SpecificInit /> */}
-            <SpecificMovie />
+            <Routes>
+              <Route path="/" element={<SpecificInit />} />
+              <Route path="/SpecificMovie" element={<SpecificMovie />} />
+              {/* <SpecificBook /> */}
+              <Route path="/WriteReview" element={<WriteReview />} />
+            </Routes>
           </Right>
         </Body>
       </Wrapper>
@@ -83,7 +104,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding 0px 96px;
+  padding: 0px 96px;
 `;
 
 const Wrapper = styled.div`
