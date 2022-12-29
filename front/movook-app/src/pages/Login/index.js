@@ -35,13 +35,15 @@ const Login = () => {
     userApi
       .login(user)
       .then(({ data }) => {
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("loginUser", userId);
         localStorage.setItem("accessToken", data.access_token);
         Cookie.set("refreshToken", data.refresh_token);
         localStorage.setItem(
           "expiresAt",
           moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
         );
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => console.log(error));
   };

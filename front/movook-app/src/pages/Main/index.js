@@ -18,37 +18,43 @@ const Main = () => {
       review_id: 1,
       movie_id: 10001,
       book_id: null,
-      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
+      image:
+        "https://www.themoviedb.org/t/p/w440_and_h660_face/hh1kvVSc1kl3Ub5klMao6Gi5i5Q.jpg",
     },
     {
       review_id: 2,
       movie_id: null,
       book_id: 20001,
-      image: "https://image.aladin.co.kr/product/27222/22/cover500/e822538010_1.jpg",
+      image:
+        "https://image.aladin.co.kr/product/27222/22/cover500/e822538010_1.jpg",
     },
     {
       review_id: 3,
       movie_id: 10002,
       book_id: null,
-      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
+      image:
+        "https://www.themoviedb.org/t/p/w440_and_h660_face/7zLHH6LV6rI6emO0z1U8VZDUkjd.jpg",
     },
     {
       review_id: 4,
       movie_id: null,
       book_id: 20002,
-      image: "https://image.aladin.co.kr/product/27081/4/cover500/e972538100_1.jpg",
+      image:
+        "https://image.aladin.co.kr/product/27081/4/cover500/e972538100_1.jpg",
     },
     {
       review_id: 5,
       movie_id: null,
       book_id: 20003,
-      image: "https://image.aladin.co.kr/product/30707/69/cover500/e172530255_1.jpg",
+      image:
+        "https://image.aladin.co.kr/product/30707/69/cover500/e172530255_1.jpg",
     },
     {
       review_id: 6,
       movie_id: 10003,
       book_id: null,
-      image: "https://www.themoviedb.org/t/p/w440_and_h660_face/sWoYDNPNZs5MtzPbirXV73tIHrA.jpg",
+      image:
+        "https://www.themoviedb.org/t/p/w440_and_h660_face/sWoYDNPNZs5MtzPbirXV73tIHrA.jpg",
     },
   ];
 
@@ -98,7 +104,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding 0px 96px;
+  padding: 0px 96px;
 `;
 
 const Wrapper = styled.div`

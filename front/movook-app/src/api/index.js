@@ -14,4 +14,5 @@ export const userApi = {
   join: (user) => api.post("/join", user),
   login: (user) => api.post("/login", user),
   findPassword: (user) => api.post("/pw/search/email", user),
+  logout: (userId) => api.get(`/logout/${userId}`),
 };

@@ -8,23 +8,17 @@ import Review from "./pages/Review";
 import Join from "./pages/Join";
 import FindPassword from "./pages/FindPassword";
 const AppRouter = () => {
-  // 사용자의 로그인 여부에 따른 라우터 처리
   return (
     <Router>
-      {localStorage.getItem("accessToken") !== null ? (
-        <Routes>
-          <Route path="/*" element={<Main />} />
-          <Route path="/plan" element={<Plan />} />
-          <Route path="/review" element={<Review />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/join" element={<Join />} />
-          <Route path="/intro" element={<Intro />} />
-          <Route path="/password/find" element={<FindPassword />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/home" element={<Main />} />
+        <Route path="/plan" element={<Plan />} />
+        <Route path="/review" element={<Review />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/intro" element={<Intro />} />
+        <Route path="/password/find" element={<FindPassword />} />
+      </Routes>
     </Router>
   );
 };
