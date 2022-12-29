@@ -182,16 +182,16 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "Access Token 재발급", notes = "만료된 access token을 재발급받는다.", response = Map.class)
-    @GetMapping("/auth/refresh")
-    public ResponseEntity<?> checkRefresh(@RequestBody User user, HttpServletRequest request) {
+    @GetMapping("/auth/refresh/{user_id}")
+    public ResponseEntity<?> checkRefresh(@PathVariable String user_id, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = HttpStatus.ACCEPTED;
         String token = request.getHeader("refresh_token");
-        logger.debug("token : {}, memberDto : {}", token, user);
+        logger.debug("token : {}, memberDto : {}", token, user_id);
         if (jwtService.checkToken(token)) {
             try {
-                if (token.equals(userService.getRefreshToken(user.getUser_id()))) {
-                    String accessToken = jwtService.createAccessToken("user_id", user.getUser_id());
+                if (token.equals(userService.getRefreshToken(user_id))) {
+                    String accessToken = jwtService.createAccessToken("user_id", user_id);
                     logger.debug("token : {}", accessToken);
                     logger.debug("정상적으로 액세스토큰 재발급!!!");
                     resultMap.put("access_token", accessToken);
