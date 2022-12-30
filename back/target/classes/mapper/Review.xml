@@ -28,12 +28,15 @@
 		select *
 		from review
 		where open_use = #{open_use}
+		order by review_id DESC
+   		LIMIT #{offset}, #{recordSize}
 	</select>
 	
 	<select id="getReviewUser" parameterType="string" resultType="Review">
 		select *
 		from review
 		where user_id = #{user_id}
+		
 	</select>
 	
 	<select id="ReviewDetail" parameterType="string" resultType="Review">
