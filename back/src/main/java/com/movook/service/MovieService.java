@@ -10,6 +10,4 @@ public interface MovieService {
     List searchMovieByTitle(String movie_title) throws Exception;
     Movie movieRead(String movie_id) throws Exception;
     boolean movieInsert(Movie movie) throws Exception;
-    boolean movieUpdate(Movie movie) throws Exception;
-    boolean movieDelete(String movie_id) throws Exception;
 }

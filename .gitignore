@@ -10,6 +10,7 @@ Servers/
 back/.idea/
 back/.settings/
 back/bin/
+back/target/
 
 # plus
 back/.idea/.gitignore

@@ -42,15 +42,27 @@ public class MovieRestController {
 		return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ApiOperation(value = "영화 추가", notes = "영화의 리뷰를 작성할 때 외래키 사용을 위해 영화 데이터를 추가합니다.")
-	@PostMapping("/movie")
-	public ResponseEntity<?> insertMovie(@RequestBody Movie movie){
+//	@ApiOperation(value = "영화 추가", notes = "영화의 리뷰를 작성할 때 외래키 사용을 위해 영화 데이터를 추가합니다.")
+//	@PostMapping("/movie")
+//	public ResponseEntity<?> insertMovie(@RequestBody Movie movie){
+//		try {
+//			movieService.movieInsert(movie);
+//			return new ResponseEntity<String>(OK,HttpStatus.OK);
+//		} catch (Exception e) {
+//			logger.warn(e.getMessage());
+//			return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+
+	@ApiOperation(value = "영화 검색(local DB)", notes = "DB에 저장된 영화 정보를 검색합니다.")
+	@GetMapping("/movie/{movie_id}")
+	public ResponseEntity<?> readMovie(@PathVariable String movie_id){
 		try {
-			movieService.movieInsert(movie);
-			return new ResponseEntity<String>(OK,HttpStatus.OK);
+			Movie movie = movieService.movieRead(movie_id);
+			return new ResponseEntity<Movie>(movie, HttpStatus.OK);
 		} catch (Exception e) {
 			logger.warn(e.getMessage());
-			return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>(NO, HttpStatus.NO_CONTENT);
 		}
 	}
 

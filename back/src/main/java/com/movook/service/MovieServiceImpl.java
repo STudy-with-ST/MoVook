@@ -113,6 +113,9 @@ public class MovieServiceImpl implements MovieService {
 
             // add in list
             list.add(tmp);
+
+            // store in DB
+            this.movieInsert(tmp);
         }
         list.sort((e1, e2)-> {
             return (int) (e2.getPopularity() - e1.getPopularity());
@@ -128,15 +131,5 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public boolean movieInsert(Movie movie) throws Exception {
         return movieMapper.movieInsert(movie);
-    }
-
-    @Override
-    public boolean movieUpdate(Movie movie) throws Exception {
-        return movieMapper.movieUpdate(movie);
-    }
-
-    @Override
-    public boolean movieDelete(String movie_id) throws Exception {
-        return movieMapper.movieDelete(movie_id);
     }
 }

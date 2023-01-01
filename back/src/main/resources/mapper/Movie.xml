@@ -15,4 +15,10 @@
 		insert into movie(movie_id, movie_title, genre, image, overview, released_date, original_language , vote_average, popularity, adult)
 		values (#{movie_id}, #{movie_title}, #{genre}, #{image}, #{overview}, #{released_date}, #{original_language} , #{vote_average}, #{popularity}, #{adult})
 	</insert>
+
+	<select id="movieRead" parameterType="String" resultType="Movie">
+		select movie_id, movie_title, genre, image, overview, released_date, original_language , vote_average, popularity, adult
+		from movie
+		where movie_id = #{movie_id}
+	</select>
 </mapper>
