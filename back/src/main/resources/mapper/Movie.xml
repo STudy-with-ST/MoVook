@@ -21,4 +21,10 @@
 		from movie
 		where movie_id = #{movie_id}
 	</select>
+
+	<select id="existInDb" parameterType="String" resultType="boolean">
+		select IF(COUNT(*) = 1, 1, 0)
+		from movie
+		where movie_id = #{movie_id}
+	</select>
 </mapper>

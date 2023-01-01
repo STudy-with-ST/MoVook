@@ -49,12 +49,12 @@ public class MovieRestController {
 //			movieService.movieInsert(movie);
 //			return new ResponseEntity<String>(OK,HttpStatus.OK);
 //		} catch (Exception e) {
-//			logger.warn(e.getMessage());
+//			logger.warn(e.getMessage());정
 //			return new ResponseEntity<String>(NO, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
 //	}
 
-	@ApiOperation(value = "영화 검색(local DB)", notes = "DB에 저장된 영화 정보를 검색합니다.")
+	@ApiOperation(value = "영화 검색(in local DB)", notes = "DB에 저장된 영화 정보를 검색합니다. 영화 제목으로 검색시 DB에 영화가 저장되며 이 api는 review의 movie_id 컬럼을 통해 영화의 정보에 접근하고자 할 때 사용합니다.")
 	@GetMapping("/movie/{movie_id}")
 	public ResponseEntity<?> readMovie(@PathVariable String movie_id){
 		try {

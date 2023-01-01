@@ -115,7 +115,10 @@ public class MovieServiceImpl implements MovieService {
             list.add(tmp);
 
             // store in DB
-            this.movieInsert(tmp);
+            if(!movieMapper.existInDb(tmp.getMovie_id())){
+                logger.info("NEW DATA | INSERT {}",tmp);
+                this.movieInsert(tmp);
+            }
         }
         list.sort((e1, e2)-> {
             return (int) (e2.getPopularity() - e1.getPopularity());
