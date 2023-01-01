@@ -133,6 +133,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public boolean movieInsert(Movie movie) throws Exception {
+        if(movieMapper.existInDb(movie.getMovie_id())) return false;
         return movieMapper.movieInsert(movie);
     }
 }

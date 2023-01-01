@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.movook</groupId>
 	<artifactId>movook</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>movook</name>
 	<description>movook spring server</description>
 	<properties>
